@@ -1,12 +1,11 @@
-# vim 总结
-
+# vim 总结:
 
 <!-- vim-markdown-toc GFM -->
 
 * [.Vimrc 配置](#vimrc-配置)
-* [ACM 现场14行配置](#acm-现场14行配置)
 * [光标快速移动](#光标快速移动)
 * [插入](#插入)
+* [缩进](#缩进)
 * [删除](#删除)
 * [查找与替换](#查找与替换)
 * [多行查找替换](#多行查找替换)
@@ -16,6 +15,7 @@
 * [自定义快捷键](#自定义快捷键)
 	* [\<Leader\>和mapleader变量](#leader和mapleader变量)
 	* [支持系统剪贴板的复制粘贴](#支持系统剪贴板的复制粘贴)
+	* [支持移动文本到上/下一行](#支持移动文本到上下一行)
 * [键表](#键表)
 * [插件命令](#插件命令)
 	* [vim-markdown-toc](#vim-markdown-toc)
@@ -35,10 +35,12 @@
 ```vim
 # $ vim ~/.vimrc
 # 输入以下配置：
-	
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => General
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax on				" 语法高亮
 filetype plugin on		" 根据不同的文件类型语言加载不同插件（如，C++ 的语法高亮插件与python的不同）
-filetype plugin on		" 根据不同文件类型加载相关缩进文件
 
 set nocompatible        " 关闭兼容模式 
 set number              " 显示行号
@@ -65,7 +67,51 @@ let mapleader=";"
 vmap <Leader>y :w !pbcopy<CR><CR>
 nmap <Leader>y :w !pbcopy<CR><CR>
 nmap <Leader>p :r !pbpaste<CR><CR>
-  
+
+" 上移或下移一行
+nnoremap <C-j> :m .+1<CR>==
+inoremap <C-j> <Esc>:m .+1<CR>==gi
+vnoremap <C-j> :m '>+1<CR>gv=gv
+nnoremap <C-k> :m .-2<CR>==
+inoremap <C-k> <Esc>:m .-2<CR>==gi
+vnoremap <C-k> :m '<-2<CR>gv=gv
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Vundle 
+ """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+filetype off                  " required
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+"Plugin 'godlygeek/tabular'
+"Plugin 'plasticboy/vim-markdown'
+Plugin 'mzlogin/vim-markdown-toc'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+" vim-markdown configuration
+"let g:vim_markdown_folding_disabled = 1
+
+" vim-instant-markdown configuration
+" vim-instant-markdown 使用npm 安装，不是vundle
+set shell=bash\ -i
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => 一键编译 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+ 
 map <F5> :call Run()<CR>
 func! Run()
 	exec "w"
@@ -86,53 +132,21 @@ nmap<F6> : vs %<.out <CR>
 
 ```
 
-### ACM 现场14行配置
-
-```vim
-syntax on  
-set cindent  
-set nu  
-set tabstop=4  
-set shiftwidth=4  
-set background=dark  
-  
-map <C-A> ggVG"+y  
-map <F5> :call Run()<CR>  
-func! Run()  
-    exec "w"  
-    exec "!g++ -Wall % -o %<"  
-    exec "!./%<"  
-endfunc  
-```
-
 
 ### 光标快速移动
 
 * `h`, `j`, `k`, `l` : 左，下，上，右
-
 * `w` : 光标移动至下一单词首位
-
 * `b` : 光标移动至当前单词首位，如果光标已经在当前单词首位，就移动到前一单词首位
-
 * `e` : 光标移动至当前单词末位，如果光标已经在当前单词末位，就移动到下一单词末位
-
 * `$` : 光标移动至行末
-
 * `^` : 光标移动至行首
-
 * `gg` : 光标移动至文本首行
-
 * `Shift + g` : 光标移动至文本尾行
-
 * `27 + Shift + g` : 光标移动至文本第27行
-
 * `Ctrl + f` : 向下翻页
-
 * `Ctrl + b` : 向上翻页
-
 * `2 + Ctrl + f` : 向下翻2页
-
-  
 
 ### 插入
 
@@ -140,6 +154,11 @@ endfunc
 * `o` : 进入编辑模式，在当前光标的下方插入新一行
 * `a` : 进入编辑模式，在下一光标处追加文本
 * `s` : 进入编辑模式，删除字符并插入
+
+### 缩进
+
+* `<<` : 向左缩进
+* `>>` : 向右缩进
 
 ### 删除
 
@@ -242,15 +261,33 @@ Vim 通过 `map` 自定义快捷键，`map` 是一个映射命令，将常用�
 
 #### 支持系统剪贴板的复制粘贴
 
-	let mapleader=";"
-	vmap <Leader>y :w !pbcopy<CR><CR>
- 	nmap <Leader>y :w !pbcopy<CR><CR>
-	nmap <Leader>p :r !pbpaste<CR><CR>
+```vim
+let mapleader=";"
+vmap <Leader>y :w !pbcopy<CR><CR>
+nmap <Leader>y :w !pbcopy<CR><CR>
+nmap <Leader>p :r !pbpaste<CR><CR>
+```
 
 在 `.vimrc` 进行如上配置后，就支持以下的2个命令了：
 
-* `;y`  复制内容到剪贴板
+* `;y` : 复制内容到剪贴板
 * `;p` : 粘贴剪贴板的内容
+
+#### 支持移动文本到上/下一行
+
+```vim
+nnoremap <C-j> :m .+1<CR>==
+inoremap <C-j> <Esc>:m .+1<CR>==gi
+vnoremap <C-j> :m '>+1<CR>gv=gv
+nnoremap <C-k> :m .-2<CR>==
+inoremap <C-k> <Esc>:m .-2<CR>==gi
+vnoremap <C-k> :m '<-2<CR>gv=gv
+```
+
+在 `.vimrc` 进行如上配置后，就支持快捷键上下移动文本了：
+
+* `Ctrl + j` : 移动文本到下一行
+* `Ctrl + k` : 移动文本到上一行
 
 ### 键表
 
