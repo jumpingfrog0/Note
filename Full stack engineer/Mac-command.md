@@ -161,3 +161,11 @@ Mac Command
 	$ rm /var/db/.AppleSetupDone 	# 删除系统安装完毕的配置，执行后同样没有任何提示
 	$ reboot						# 重启
 	```
+
+	### 解压缩
+
+	解压
+
+	```terminal
+	tar xxx.tar.xz
+	```

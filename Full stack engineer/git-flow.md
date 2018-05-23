@@ -63,6 +63,8 @@ $ git push origin develop
 
 [Git Document -- git-scm](https://git-scm.com/book/tr/v2)
 
+[gitignore collection](https://github.com/github/gitignore)
+
 ### Tutorials
 
 [Git tutorials](https://www.atlassian.com/git/tutorials/undoing-changes)

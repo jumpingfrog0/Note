@@ -2,7 +2,6 @@
 
 <!-- vim-markdown-toc GFM -->
 
-* [.Vimrc 配置](#vimrc-配置)
 * [光标快速移动](#光标快速移动)
 * [插入](#插入)
 * [缩进](#缩进)
@@ -17,8 +16,13 @@
 	* [支持系统剪贴板的复制粘贴](#支持系统剪贴板的复制粘贴)
 	* [支持移动文本到上/下一行](#支持移动文本到上下一行)
 * [键表](#键表)
+* [插件管理](#插件管理)
+	* [pathogen](#pathogen)
+	* [vundle](#vundle)
+	* [vim 常用插件列表](#vim-常用插件列表)
 * [插件命令](#插件命令)
 	* [vim-markdown-toc](#vim-markdown-toc)
+* [.Vimrc 配置](#vimrc-配置)
 
 <!-- vim-markdown-toc -->
 
@@ -28,110 +32,6 @@
 
 
 > 注意：Mac 自带的 Vim 不支持复制内容到剪切板
-
-
-### .Vimrc 配置
-
-```vim
-# $ vim ~/.vimrc
-# 输入以下配置：
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => General
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-syntax on				" 语法高亮
-filetype plugin on		" 根据不同的文件类型语言加载不同插件（如，C++ 的语法高亮插件与python的不同）
-
-set nocompatible        " 关闭兼容模式 
-set number              " 显示行号
-set autoindent          " 自动对齐
-set smartindent         " 智能对齐
-set showmatch           " 括号匹配模式
-set ruler               " 显示状态行
-set incsearch           " 查询时非常方便，如要查找book单词，当输入到/b时，会自动找到   第一个b开头的单词，当输入到/bo时，会自动找到第一个bo开头的单词，依次类推，进行查找时，使用此设置会快速找到答案，当你找要匹配的单词时，别忘记回车.
-
-set cindent             " C语言格式对齐
-set nobackup            " 不要备份文件
-set clipboard+=unnamed	" 共享剪贴板
-
-" 1 tab == 4 spaces
-set tabstop=4
-set shiftwidth=4
-
-" 高亮显示当前行/列
-set cursorline			
-" set cursorcolumn
-
-" 与剪贴板共享复制粘贴
-let mapleader=";"
-vmap <Leader>y :w !pbcopy<CR><CR>
-nmap <Leader>y :w !pbcopy<CR><CR>
-nmap <Leader>p :r !pbpaste<CR><CR>
-
-" 上移或下移一行
-nnoremap <C-j> :m .+1<CR>==
-inoremap <C-j> <Esc>:m .+1<CR>==gi
-vnoremap <C-j> :m '>+1<CR>gv=gv
-nnoremap <C-k> :m .-2<CR>==
-inoremap <C-k> <Esc>:m .-2<CR>==gi
-vnoremap <C-k> :m '<-2<CR>gv=gv
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vundle 
- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-filetype off                  " required
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-"Plugin 'godlygeek/tabular'
-"Plugin 'plasticboy/vim-markdown'
-Plugin 'mzlogin/vim-markdown-toc'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-
-" vim-markdown configuration
-"let g:vim_markdown_folding_disabled = 1
-
-" vim-instant-markdown configuration
-" vim-instant-markdown 使用npm 安装，不是vundle
-set shell=bash\ -i
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => 一键编译 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
- 
-map <F5> :call Run()<CR>
-func! Run()
-	exec "w"
-	exec "!g++ -Wall % -o %<"
-	exec "!./%<"
-endfunc
-
-" 一键编译
-"自动生成并打开.in文件， 方便放入输入数据。
-nmap<F2> : vs %<.in <CR> 
-"直接运行java程序并读入.in中的数据
-nmap<F4> : !clear && time java %< < %<.in <CR>
-"直接运行c++程序并读入.in中的数据
-"nmap<F5> : !clear && time ./%< < %<.in <CR>  
-
-" 打开.out
-nmap<F6> : vs %<.out <CR>
-
-```
-
 
 ### 光标快速移动
 
@@ -302,6 +202,42 @@ vnoremap <C-k> :m '<-2<CR>gv=gv
 	<Tab> 		: 插入Tab 
 	<CR> 		: 等于<Enter>
 
+### 插件管理
+
+#### pathogen
+
+使用 [pathogen](https://github.com/tpope/vim-pathogen) 来管理插件会非常的方便，可以让每一个插件占有一个单独的目录，解决了文件分散的问题。只需要将要安装的所有插件放在 `~/.vim/bundle` 目录下即可，如果要删除某个插件，只需要将 `~/.vim/bundle` 目录下对应的插件目录删除即可，通常使用 *git clone* 的方式安装插件。：
+
+#### vundle
+
+[Vundle](https://github.com/VundleVim/Vundle.vim) 可以说是 `pathogen` 的升级版，把 git 操作整合进去，进一步简化了操作，用户需要做的只是去 GitHub 上找到自己想要的插件的名字，安装、更新和卸载由 vundle 来完成。
+
+插件的安装目录是：`~/.vim/bundle`
+
+在 vim 里面运行以下命令来安装插件：
+
+```terminal
+:so ~/.vimrc 	// reload vimrc
+:PluginInstall
+```
+
+其他命令:
+
+* 打开doc : `:h vundle`
+* 更新插件 : `:PluginUpdate`
+* 清空全部没有在*.vimrc*中配置的插件 : `:PluginClean`
+* 清空没有使用的插件 : `:PluginClean!`
+* 列出所有插件 : `PluginList`
+* 查找插件 : `PluginSearch`
+
+#### vim 常用插件列表
+
+* [vim-markdown](https://github.com/plasticboy/vim-markdown) : markdown 编辑插件
+* [vim-colors-solarized](https://github.com/altercation/vim-colors-solarized) : vim 配色
+* [vim-markdown-toc](https://github.com/mzlogin/vim-markdown-toc) : 生成markdown目录
+* [vim-instant-markdown](https://github.com/suan/vim-instant-markdown) : markdown 预览插件(不能使用vundle安装，只能使用npm手动安装)
+
+
 ### 插件命令
 
 #### vim-markdown-toc
@@ -311,3 +247,106 @@ vnoremap <C-k> :m '<-2<CR>gv=gv
 * `:GenTocGitLab` : 生成 [GitLab](https://docs.gitlab.com/ee/user/markdown.html) 风格的目录
 * `:UpdateToc` : 手动更新目录
 * `:RemoveToc` : 手动删除目录
+
+### .Vimrc 配置
+
+```vim
+# $ vim ~/.vimrc
+# 输入以下配置：
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => General
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+syntax on				" 语法高亮
+filetype plugin on		" 根据不同的文件类型语言加载不同插件（如，C++ 的语法高亮插件与python的不同）
+
+set nocompatible        " 关闭兼容模式 
+set number              " 显示行号
+set autoindent          " 自动对齐
+set smartindent         " 智能对齐
+set showmatch           " 括号匹配模式
+set ruler               " 显示状态行
+set incsearch           " 查询时非常方便，如要查找book单词，当输入到/b时，会自动找到   第一个b开头的单词，当输入到/bo时，会自动找到第一个bo开头的单词，依次类推，进行查找时，使用此设置会快速找到答案，当你找要匹配的单词时，别忘记回车.
+
+set cindent             " C语言格式对齐
+set nobackup            " 不要备份文件
+set clipboard+=unnamed	" 共享剪贴板
+
+" 1 tab == 4 spaces
+set tabstop=4
+set shiftwidth=4
+
+" 高亮显示当前行/列
+set cursorline			
+" set cursorcolumn
+
+" 与剪贴板共享复制粘贴
+let mapleader=";"
+vmap <Leader>y :w !pbcopy<CR><CR>
+nmap <Leader>y :w !pbcopy<CR><CR>
+nmap <Leader>p :r !pbpaste<CR><CR>
+
+" 上移或下移一行
+nnoremap <C-j> :m .+1<CR>==
+inoremap <C-j> <Esc>:m .+1<CR>==gi
+vnoremap <C-j> :m '>+1<CR>gv=gv
+nnoremap <C-k> :m .-2<CR>==
+inoremap <C-k> <Esc>:m .-2<CR>==gi
+vnoremap <C-k> :m '<-2<CR>gv=gv
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Vundle 
+ """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+filetype off                  " required
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+"Plugin 'godlygeek/tabular'
+"Plugin 'plasticboy/vim-markdown'
+Plugin 'mzlogin/vim-markdown-toc'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+" vim-markdown configuration
+"let g:vim_markdown_folding_disabled = 1
+
+" vim-instant-markdown configuration
+" vim-instant-markdown 使用npm 安装，不是vundle
+set shell=bash\ -i
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => 一键编译 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+ 
+map <F5> :call Run()<CR>
+func! Run()
+	exec "w"
+	exec "!g++ -Wall % -o %<"
+	exec "!./%<"
+endfunc
+
+" 一键编译
+"自动生成并打开.in文件， 方便放入输入数据。
+nmap<F2> : vs %<.in <CR> 
+"直接运行java程序并读入.in中的数据
+nmap<F4> : !clear && time java %< < %<.in <CR>
+"直接运行c++程序并读入.in中的数据
+"nmap<F5> : !clear && time ./%< < %<.in <CR>  
+
+" 打开.out
+nmap<F6> : vs %<.out <CR>
+
+```
+

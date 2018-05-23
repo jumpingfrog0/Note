@@ -455,3 +455,17 @@ options.predicate = [NSPredicate predicateWithFormat:@"mediaType = %d",PHAssetMe
 必须设置 `removedOnCompletion` 为 `NO`，否则执行完动画后会恢复原状。这时可能会出现各种奇怪的现象，比如闪一下（view被移除之前恢复原状，然后再被移除）。
 
 > 注意：如果 转场动画(Transition) 中设置了 `removedOnCompletion` 为 `NO`，必须在动画执行完毕后手动移除animation，否则会导致内存泄漏。
+
+## React-Native
+
+["__nw_connection_get_connected_socket_block_invoke Connection has no connected handler" in logs](https://github.com/facebook/react-native/issues/10027)
+
+打开 React-Native 页面，在控制台持续打印 `TCP Conn 0x1c036b880 Failed : error 0:61 [61]` 的错误信息，使用如下方法禁止打印。
+
+1. Open Xcode.
+2. Open Product menu.
+3. Select Edit Scheme...
+4. Add the following under Environment Variables:
+5. Name: OS_ACTIVITY_MODE
+6. Value: disable
+7. Run your app again
