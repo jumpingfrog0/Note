@@ -127,7 +127,6 @@ push 动画时间：0.35 s
 
  Target --> Info --> Localization native development region ： China
  
- ![](http://img.blog.csdn.net/20140925161937546?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaHp4cHlqcQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
  
 ### NSDictionary set nil value
 

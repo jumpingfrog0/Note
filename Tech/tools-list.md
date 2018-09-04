@@ -47,6 +47,18 @@
 
 [Vimium](https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb) -- 像使用Vim一样使用Chrome浏览器
 
+[GitZip for github](https://chrome.google.com/webstore/detail/gitzip-for-github/ffabmkklhbepgcgfonabamgnfafbdlkn/related) -- 下载 github 仓库子目录的文件
+
+[Evernote Web Clipper](https://chrome.google.com/webstore/detail/evernote-web-clipper/pioclpoplcdbaefihamjohnefbikjilc) -- 印象笔记剪藏
+
+> 推荐：使用 Safari 的 印象笔记剪藏插件来保存笔记
+>
+> 因为这个插件不能保存 webp 格式的图片，Chrome 是支持 webp的，在 Chrome 下使用剪藏会导致 webp 的图片保存不了
+>
+> 而 Safari 不支持 webp 图片，会自动加载 jpg 图片，所以使用 Safari 的剪藏插件是没有问题的。
+
+[OneTab] -- 标签管理工具
+
 ## Vim plugins
 
 [Vundle](https://github.com/VundleVim/Vundle.vim) -- Vim 插件管理工具
@@ -65,6 +77,8 @@
 [tree](http://osxdaily.com/2016/09/09/view-folder-tree-terminal-mac-os-tree-equivalent/)
 
 [autojump](https://github.com/wting/autojump)
+
+[zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 
 [homebrew](https://brew.sh/)
 
@@ -100,6 +114,8 @@ Mobile Developers](https://rollout.io/)
 [Iconfont-阿里巴巴矢量图标库](http://www.iconfont.cn/plus)
 
 [Appium](http://appium.io/) -- 自动化测试框架
+
+[RSSHub](https://docs.rsshub.app/) -- RSS 生成器
 
 ##### 老徐介绍的提高效率的工具
 	

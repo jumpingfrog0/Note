@@ -1,4 +1,8 @@
 # vim 总结:
+<!--
+create time: 2018-05-05 20:50:34
+Author: <黄东鸿>
+-->
 
 <!-- vim-markdown-toc GFM -->
 
@@ -19,16 +23,27 @@
 * [插件管理](#插件管理)
 	* [pathogen](#pathogen)
 	* [vundle](#vundle)
+	* [vim-plug](#vim-plug)
 	* [vim 常用插件列表](#vim-常用插件列表)
 * [插件命令](#插件命令)
 	* [vim-markdown-toc](#vim-markdown-toc)
-* [.Vimrc 配置](#vimrc-配置)
+* [插件快捷键](#插件快捷键)
+	* [nerdtree](#nerdtree)
+* [.vimrc 配置](#vimrc-配置)
 
 <!-- vim-markdown-toc -->
 
+vim 辅助记忆神图：
+
+![vim 辅助记忆神图](http://os3yasu4i.bkt.clouddn.com/vim-key.png)
+
+进入Vim自带的教程里
+
+	$ vimtutor
+
 检查vim支持的功能
 
-	vim --version
+	$ vim --version
 
 
 > 注意：Mac 自带的 Vim 不支持复制内容到剪切板
@@ -42,8 +57,8 @@
 * `$` : 光标移动至行末
 * `^` : 光标移动至行首
 * `gg` : 光标移动至文本首行
-* `Shift + g` : 光标移动至文本尾行
-* `27 + Shift + g` : 光标移动至文本第27行
+* `Shift + G` : 光标移动至文本尾行
+* `27 + Shift + G` : 光标移动至文本第27行
 * `Ctrl + f` : 向下翻页
 * `Ctrl + b` : 向上翻页
 * `2 + Ctrl + f` : 向下翻2页
@@ -77,6 +92,7 @@
 * `dE` : 删除到本单词末尾包括标点在内
 * `db` : 删除到前一个单词
 * `dB` : 删除到前一个单词包括标点在内
+* `dG` : 删除到文本末尾
 
 ### 查找与替换
 
@@ -87,8 +103,22 @@
 * `?.word` : 向前搜索 word
 * `n` : 查找下一处
 * `N` : 查找上一处
-* `r + w` : 将光标之后的字符替换成 c
-* `:%s/foo/bar/g`: 全文替换 foo 为 bar
+* `r + c` : 将光标所在的字符替换成 c
+* `:s/foo/bar` : 光标所在行的第一个 foo 替换为 bar
+* `:1,50s/foo/bar/` : 在第1行和第50行之间（含）进行搜索和替换
+* `:45s/foo/bar/` : 仅仅在第45行进行搜索和替换
+* `:%s/foo/bar/g` : 全文查找 foo 并替换为 bar
+* `:%s/foo/bar/gc` : 全文查找 foo 并替换为 bar，替换时询问
+
+	`y/n/a/q/l/^E/^Y` : 
+
+	- y表示同意当前替换；
+	- n表示不同意当前替换；
+	- a表示替换当前和后面的并且不再确认；
+	- q表示立即结束替换操作；
+	- l表示把当前的替换后结束替换操作；
+	- ^E向上滚屏，用来帮助查看前后内容以决定进行操作；
+	- ^Y向下滚屏，用来帮助查看前后内容以决定进行操作。
 
 ### 多行查找替换
 
@@ -96,9 +126,14 @@
 
 ```
 Shift + V
-// 方向键选中需要查找替换的内容，输入：,vim会自动补全 :'<,'>
-:'<,'>s/foo/bar/g
+// 方向键选中需要查找替换的内容，输入：,vim会自动补全 :'<,'
+:'<,'>s/foo/bar/g>
 ```
+
+### 函数跳转
+
+* `gd` : 进入函数
+* `Ctrl + T` : 返回跳转之前的位置
 
 ### 选中
 
@@ -133,6 +168,7 @@ Shift + V
 * `u` : 撤销
 * `U` : 行内撤销
 * `Ctrl + r` : 取消撤销
+* `:!ls` : 等同于在 Shell 终端执行 *ls* 命令。
 
 ### 自定义快捷键
 
@@ -206,7 +242,7 @@ vnoremap <C-k> :m '<-2<CR>gv=gv
 
 #### pathogen
 
-使用 [pathogen](https://github.com/tpope/vim-pathogen) 来管理插件会非常的方便，可以让每一个插件占有一个单独的目录，解决了文件分散的问题。只需要将要安装的所有插件放在 `~/.vim/bundle` 目录下即可，如果要删除某个插件，只需要将 `~/.vim/bundle` 目录下对应的插件目录删除即可，通常使用 *git clone* 的方式安装插件。：
+使用 [pathogen](https://github.com/tpope/vim-pathogen) 来管理插件会非常的方便，可以让每一个插件占有一个单独的目录，解决了文件分散的问题。只需要将要安装的所有插件放在 `~/.vim/bundle` 目录下即可，如果要删除某个插件，只需要将 `~/.vim/bundle` 目录下对应的插件目录删除即可，通常使用 *git clone* 的方式安装插件。
 
 #### vundle
 
@@ -230,12 +266,17 @@ vnoremap <C-k> :m '<-2<CR>gv=gv
 * 列出所有插件 : `PluginList`
 * 查找插件 : `PluginSearch`
 
+#### vim-plug
+
+[vim-plug](https://github.com/junegunn/vim-plug) 是 `vundle` 升级版，支持并行安装插件，异步加载插件，配合 [NeoVim](https://github.com/neovim/neovim) 可以安装一些比较高级的插件。
+
 #### vim 常用插件列表
 
 * [vim-markdown](https://github.com/plasticboy/vim-markdown) : markdown 编辑插件
 * [vim-colors-solarized](https://github.com/altercation/vim-colors-solarized) : vim 配色
 * [vim-markdown-toc](https://github.com/mzlogin/vim-markdown-toc) : 生成markdown目录
 * [vim-instant-markdown](https://github.com/suan/vim-instant-markdown) : markdown 预览插件(不能使用vundle安装，只能使用npm手动安装)
+* [nerdtree](https://github.com/scrooloose/nerdtree) : 树型文件管理系统
 
 
 ### 插件命令
@@ -248,12 +289,21 @@ vnoremap <C-k> :m '<-2<CR>gv=gv
 * `:UpdateToc` : 手动更新目录
 * `:RemoveToc` : 手动删除目录
 
-### .Vimrc 配置
+### 插件快捷键
+
+#### nerdtree
+
+[NERDTree 快捷键辑录](http://yang3wei.github.io/blog/2013/01/29/nerdtree-kuai-jie-jian-ji-lu/)
+
+* `Ctrl + n` : 打开/关闭 nerdtree（自定义的map）
+* `Ctrl + w + w` : 左右切换窗口
+
+
+### .vimrc 配置
+
+以下是我的 vim 配置：
 
 ```vim
-# $ vim ~/.vimrc
-# 输入以下配置：
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -296,7 +346,14 @@ vnoremap <C-k> :m '<-2<CR>gv=gv
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vundle 
+" => pathogen 
+ """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+execute pathogen#infect()
+filetype plugin indent on
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Vundle & Plugins
  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 filetype off                  " required
 " set the runtime path to include Vundle and initialize
@@ -310,20 +367,64 @@ Plugin 'VundleVim/Vundle.vim'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
-"Plugin 'godlygeek/tabular'
-"Plugin 'plasticboy/vim-markdown'
+
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
 Plugin 'mzlogin/vim-markdown-toc'
+Plugin 'altercation/vim-colors-solarized'
+"Plugin 'dbgx/lldb.nvim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-" vim-markdown configuration
-"let g:vim_markdown_folding_disabled = 1
 
-" vim-instant-markdown configuration
-" vim-instant-markdown 使用npm 安装，不是vundle
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Plugin Settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-markdown 
+let g:vim_markdown_folding_disabled = 1
+
+" vim-instant-markdown 
+" vim-instant-markdown 不能使用vundle安装，只能使用npm手动安装
 set shell=bash\ -i
+
+"solarized theme
+syntax enable
+set background=dark
+"set background=light
+colorscheme solarized
+
+" lldb.nvim
+"set rtp+=/path/to/lldb.nvim
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim-plug
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+ 
+if empty(glob('~/.vim/autoload/plug.vim'))
+  	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+	  \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" Specify a directory for plugins
+" - For Neovim: ~/.local/share/nvim/plugged
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
+
+Plug 'dbgx/lldb.nvim'
+Plug 'scrooloose/nerdtree'
+
+" lldb.nvim
+set rtp+=/path/to/lldb.nvim
+
+" nerdtree
+map <C-n> :NERDTreeToggle<CR>
+
+
+" Initialize plugin system
+call plug#end()
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -336,17 +437,6 @@ func! Run()
 	exec "!g++ -Wall % -o %<"
 	exec "!./%<"
 endfunc
-
-" 一键编译
-"自动生成并打开.in文件， 方便放入输入数据。
-nmap<F2> : vs %<.in <CR> 
-"直接运行java程序并读入.in中的数据
-nmap<F4> : !clear && time java %< < %<.in <CR>
-"直接运行c++程序并读入.in中的数据
-"nmap<F5> : !clear && time ./%< < %<.in <CR>  
-
-" 打开.out
-nmap<F6> : vs %<.out <CR>
 
 ```
 

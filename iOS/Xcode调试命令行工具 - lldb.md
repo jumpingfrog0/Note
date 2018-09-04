@@ -189,3 +189,5 @@ po (CGRect)[self.view bounds]
 [LLDB调试命令初探](http://www.starfelix.com/blog/2014/03/17/lldbdiao-shi-ming-ling-chu-tan/)
 
 [与调试器共舞 - LLDB 的华尔兹](https://objccn.io/issue-19-2/)
+
+[The LLDB Debugger](http://lldb.llvm.org/lldb-gdb.html)

@@ -1,5 +1,19 @@
 # python
 
+## Installation
+
+安装
+
+	brew install python3
+
+卸载
+
+	brew uninstall python3
+
+## 其他
+
+在命令行模式退出 `Ctrl + D`
+
 ## python 技巧
 
 一个模块被另一个程序第一次引入时，其主程序将运行。如果我们想在模块被引入时，模块中的某一程序块不执行，我们可以用__name__属性来使该程序块仅在该模块自身运行时执行。
@@ -58,3 +72,7 @@ $ sudo python get-pip.py
 指定 git repo branch 安装
 
 	pip3 install git+https://github.com/tangentlabs/django-oscar-paypal.git@issue/34/oscar-0.6
+
+### 可以使用 pip3 安装的软件
+
+* you-get

@@ -45,6 +45,7 @@
 ## Chrome
 
 * `Cmd + Shift + N` : 无痕模式
+* `Cmd + Shift + T` : 打开上次关闭的页面
 
 
 ## Alfred
@@ -72,17 +73,21 @@
 * `Option + F12`: 打开/关闭 Terminal
 * `Cmd + 5` : 打开/关闭 Console
 
+* `Cmd + F12` : 显示/隐藏 方法列表
+* `Cmd + 1` : 切换左边导航栏为工程目录
+* `Cmd + 2` : 切换左边导航栏为方法列表
+
 * `Cmd + Option + ←` : 代码块折叠
 * `Cmd + Option + →` : 代码块展开
 * `Cmd + Option + L` : 格式化代码
-* `/**<enter>` : 文档注释
+* `Cmd + Option + T` : 用 if/for 等围住代码块
 
-* `Cmd + F12` : 显示/隐藏 方法列表
 * `Cmd + Ctrl + O` : 重载父类方法
 * `Cmd + Ctrl + I` : 实现声明的方法或协议中的方法
 * `Cmd + Ctrl + E` : 重命名
-* `F1` : 查看注释
 
+* `F1` : 查看注释
+* `/**<enter>` : 文档注释
 * `Alt + Enter` : 自动 import、代码修正
 
 ## Marboo
@@ -137,6 +142,9 @@
 * `Cmd + Option + 0` : 打开\关闭 Xcode 右边侧边栏
 * `Cmd + Ctrl + /` : 文档注释 （修改的，与Alfred某一快捷键冲突）
 * `Cmd + Option + f` : 查找和替换
+* `Cmd + Shift + F` : 全局查找
+* `Cmd + Shift + Option + F` : 全局替换
+* `Cmd + Option + J` : 导航栏文件过滤
 * `Cmd + \` : 在光标所在行打断点
 
 

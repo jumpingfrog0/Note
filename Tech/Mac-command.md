@@ -100,6 +100,10 @@ Mac Command
 	
 ### Terminal shadowsocks proxy
 
+### 查看安装目录
+
+	which python
+
 [Using Shadowsocks with Command Line Tools](https://github.com/shadowsocks/shadowsocks/wiki/Using-Shadowsocks-with-Command-Line-Tools)
 
 	# Shadowsocks-NG
