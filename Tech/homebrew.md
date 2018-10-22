@@ -25,6 +25,7 @@
 
 * jq
 * neovim
+* appledoc
 
 
 #### 可以使用 brew cask 安装的工具或软件：

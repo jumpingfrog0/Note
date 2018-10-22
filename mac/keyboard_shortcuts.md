@@ -71,11 +71,11 @@
 ## AppCode
 
 * `Option + F12`: 打开/关闭 Terminal
-* `Cmd + 5` : 打开/关闭 Console
 
 * `Cmd + F12` : 显示/隐藏 方法列表
-* `Cmd + 1` : 切换左边导航栏为工程目录
-* `Cmd + 2` : 切换左边导航栏为方法列表
+* `Cmd + 1` : 切换左边导航栏为Project选项
+* `Cmd + 2` : 切换Version Control 选项
+* `Cmd + 3` : 切换左边导航栏为Structure选项
 
 * `Cmd + Option + ←` : 代码块折叠
 * `Cmd + Option + →` : 代码块展开

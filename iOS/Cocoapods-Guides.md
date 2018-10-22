@@ -130,6 +130,12 @@ pod install
 	
 [cocoapods specs 镜像](http://akinliu.github.io/2014/05/03/cocoapods-specs-/)
 
+推到远程仓库
+
+```
+pod trunk push [PATH] --verbose --allow-warning
+```
+
 ## 私有Pod
 
 ### podspec 配置
@@ -221,8 +227,10 @@ end
 
 ### 验证.podspec文件的合法性
 
+	# 从本地和远程验证你的pod能否通过验证
 	pod spec lint react-native-sqlite-storage.podspec
 	
+	# 只从本地验证你的pod能否通过验证
 	pod lib lint React.podspec --verbose --sources=xspecs --allow-warnings
 	
 ### 添加Specs repo到本地
@@ -346,6 +354,18 @@ pod repo update
 git clean -f
 ```
 
+#### 6. pod trudk push 报错 `Authentication token is invalid or unverified. Either verify it with the email that was sent or register a new session.`
+
+主要注册一个 cocoapods 的账号
+
+```
+pod trunk register yourEmail@example.com 'Your Name'
+```
+
+#### 7. pod truck push 报错 `Source code for your Pod was not accessible to CocoaPods Trunk. Is it a private repo or behind a username/password on http?`
+
+source 要使用 https, 不能使用 ssh 的方式
+
 ### lint 报错问题汇总
 
 #### 1. 不支持 bitcode
@@ -394,3 +414,4 @@ pod search xxx
 ```
 
 能搜索到就证明创建的私有pod没问题。
+
