@@ -7,7 +7,7 @@ Cocoapods 是 iOS 的一个第三方库管理工具。
 
 ## 安装
 
-查看官方文档：[https://cocoapods.org/](https://cocoapods.org/)
+官方文档：[https://cocoapods.org/](https://cocoapods.org/)
 
 The Podfile: [http://guides.cocoapods.org/using/the-podfile.html](http://guides.cocoapods.org/using/the-podfile.html)
 
@@ -78,9 +78,6 @@ from /Users/wangzz/.rvm/rubies/ruby-1.9.3-p448/bin/pod:22:in `<main>'
 
 ## Podfile 配置
 
-> refer to: [https://guides.cocoapods.org/using/the-podfile.html](https://guides.cocoapods.org/using/the-podfile.html)
-
-
 Besides no version, or a specific one, it is also possible to use logical operators:
 
 	'> 0.1' Any version higher than 0.1
@@ -130,13 +127,61 @@ pod install
 	
 [cocoapods specs 镜像](http://akinliu.github.io/2014/05/03/cocoapods-specs-/)
 
-推到远程仓库
+## 制作Pod
+
+### 使用 pod 模板创建代码仓库
+
+```
+pod lib create repoName --template-url=git@github.com:jumpingfrog0/pod-template.git
+```
+
+### Push
+
+#### 推到公有远程仓库
 
 ```
 pod trunk push [PATH] --verbose --allow-warning
 ```
 
-## 私有Pod
+#### 添加私有Specs repo到本地
+
+	pod repo add ymtSpecs git@git.yaomaitong.net:iOSPods/ymtSpecs.git
+	
+添加成功后可以在`/.cocoapods/repos/`目录下可以看到官刚刚加入的`specs:ymtSpecs`
+
+#### 推送私有到远程仓库
+
+	pod repo push privateRepo Category.podspec
+	pod repo push privateRepo Category.podspec --allow-warnings --verbose --sources=xspecs,master
+	
+### Lint & Cache
+	
+#### 验证.podspec文件的合法性
+
+	# 从本地和远程验证你的pod能否通过验证
+	pod spec lint react-native-sqlite-storage.podspec
+	
+	# 只从本地验证你的pod能否通过验证
+	pod lib lint React.podspec --verbose --sources=xspecs --allow-warnings
+	
+#### 清除缓存
+
+	pod cache clean mzdfoundation
+
+#### 清除所有缓存
+
+	rm -rf "${HOME}/Library/Caches/CocoaPods"
+	rm -rf "`pwd`/Pods/"
+	pod update
+	
+#### 列出本地中有多少Sepc repos
+
+	pod repo list
+	
+#### 更新对应的Sepc repo
+
+	pod repo update xiaoenai-xspecs
+
 
 ### podspec 配置
 
@@ -225,43 +270,6 @@ end
   }
 ```
 
-### 验证.podspec文件的合法性
-
-	# 从本地和远程验证你的pod能否通过验证
-	pod spec lint react-native-sqlite-storage.podspec
-	
-	# 只从本地验证你的pod能否通过验证
-	pod lib lint React.podspec --verbose --sources=xspecs --allow-warnings
-	
-### 添加Specs repo到本地
-
-	pod repo add ymtSpecs git@git.yaomaitong.net:iOSPods/ymtSpecs.git
-	
-添加成功后可以在`/.cocoapods/repos/`目录下可以看到官刚刚加入的`specs:ymtSpecs`
-
-### 推送到远程仓库
-
-	pod repo push privateRepo Category.podspec
-	pod repo push privateRepo Category.podspec --allow-warnings --verbose --sources=xspecs,master
-	
-### 清除缓存
-
-	pod cache clean mzdfoundation
-
-### 清除所有缓存
-
-	rm -rf "${HOME}/Library/Caches/CocoaPods"
-	rm -rf "`pwd`/Pods/"
-	pod update
-	
-### 列出本地中有多少Sepc repos
-
-	pod repo list
-	
-### 更新对应的Sepc repo
-
-	pod repo update xiaoenai-xspecs
-	
 ### 如果搜索不到某个库
 
 搜索不到这个mob_sharesdk时：
@@ -273,7 +281,15 @@ end
 $ rm ~/Library/Caches/CocoaPods/search_index.json
 ```
 	
-### 奇葩报错问题汇总
+### 如何证明 私有 pod 上传成功？
+
+```
+pod search xxx
+```
+
+能搜索到就证明创建的私有pod没问题。
+
+## Fuck Error 汇总
 
 #### 1. Unable to satisfy the following requirements with Podfile, but they required a higher minimum deployment target.
 	
@@ -366,6 +382,14 @@ pod trunk register yourEmail@example.com 'Your Name'
 
 source 要使用 https, 不能使用 ssh 的方式
 
+#### 8. [!] [Xcodeproj] Generated duplicate UUIDs:
+
+在 Podfile 中添加：
+
+```
+install! 'cocoapods', :deterministic_uuids => false
+```
+
 ### lint 报错问题汇总
 
 #### 1. 不支持 bitcode
@@ -404,14 +428,3 @@ Step 2. 修改 Xcode 编译选项，关闭 bitcode
 ```
 pod lib lint MZDXlib.podspec --verbose --sources=xspecs --allow-warnings --no-clean --use-libraries --skip-import-validation
 ```
-
-
-
-### 如何证明 私有 pod 上传成功？
-
-```
-pod search xxx
-```
-
-能搜索到就证明创建的私有pod没问题。
-

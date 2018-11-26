@@ -19,11 +19,6 @@ Mac Command
 	$ defaults write com.apple.finder AppleShowAllFiles -bool false
 	
 快捷键 `Cmd + Option + ESC`，选中 Finder， relaunch
-	
-### 重新加载 .zshrc
-
-	$ source ~/.zshrc
-	
 
 ### Fix "The file is damaged and should be moved to the trash."
 
@@ -62,9 +57,10 @@ Mac Command
 	Ctrl + U 
 	Ctrl + C
 
-### 查看当前外网IP
+### 查看网络运营商和IP
 
 	$ curl ip.cn
+	$ curl cip.cc
 	
 ### 登录远程服务器
 

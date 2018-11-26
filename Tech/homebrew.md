@@ -12,6 +12,14 @@
 
 `brew cask` 装的大多数是有GUI界面的应用。
 
+```
+# install brew
+$ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+# install cask
+$ brew tap caskroom/cask
+```
+
 ### 查看安装目录
 
 	brew info xxx
@@ -26,6 +34,12 @@
 * jq
 * neovim
 * appledoc
+* rbenv
+* vundle
+* tree
+* node
+* 7zip
+* nginx
 
 
 #### 可以使用 brew cask 安装的工具或软件：
@@ -42,6 +56,7 @@
 * p7zip
 * MacVim
 * typora
+* fastlane?
 
 
 

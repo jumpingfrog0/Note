@@ -17,6 +17,20 @@
 
 <!-- vim-markdown-toc -->
 
+## 装机必备
+
+* homebrew
+* brew cask
+* oh-my-zsh
+* rvm(rbenv)
+* bundler
+* iterm2
+* chrome
+* shadowsocks
+* xcode
+* alfred
+* shiftit
+
 ## Application
 
 [Alfred](https://www.alfredapp.com/) - 快捷搜索
@@ -116,6 +130,8 @@ Mobile Developers](https://rollout.io/)
 [Appium](http://appium.io/) -- 自动化测试框架
 
 [RSSHub](https://docs.rsshub.app/) -- RSS 生成器
+
+[nodeppt](https://github.com/ksky521/nodeppt) Markdown 写 ppt 工具
 
 ##### 老徐介绍的提高效率的工具
 	

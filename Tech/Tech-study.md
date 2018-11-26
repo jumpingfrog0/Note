@@ -51,6 +51,8 @@ Tech Study
 
 ## 大牛个人博客
 
+[JackJiang -- 音视频编解码&移动IM技术大牛](https://my.oschina.net/jb2011)
+
 [limboy -- 蘑菇街大牛](http://limboy.me/)
 
 [老谭笔记 -- 阿里大牛，曾就职于腾讯](http://www.tanhao.me/)

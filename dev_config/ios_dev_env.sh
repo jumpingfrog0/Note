@@ -23,7 +23,7 @@ function installRuby() {
 }
 
 function installBundler() {
-    gem install bundler
+    sudo gem install bundler
 }
 
 function RunBundleInstall() {

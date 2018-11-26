@@ -413,3 +413,19 @@ $ git pull upstream master
 **Revert multiple git commit**
 
 [Revert multiple git commits](http://stackoverflow.com/questions/1463340/revert-multiple-git-commits)
+
+**Fix warning: unable to access '/.config/git/ignore': Permission denied**
+
+```
+$ sudo chown whoami .config
+```
+
+[Permission denied on Git config file](https://confluence.atlassian.com/stashkb/permission-denied-on-git-config-file-314447088.html)
+
+```	
+chown <USER>.<GROUP> -R /home/<USER>/.config
+```
+
+```
+$ sudo chown -R ex-huangdonghong001:PAICDOM\\Domain\ Users /Users/ex-huangdonghong001/.config
+```

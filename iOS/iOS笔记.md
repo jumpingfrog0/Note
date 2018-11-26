@@ -17,3 +17,9 @@ iOS 音频播放 - AVAudioSession
 | AVAudioSessionCategoryPlayAndRecord | 播放和录音，此时可以录音也可以播放 | 是 | 是 | 否 |
 | AVAudioSessionCategoryAudioProcessing | 硬件解码音频，此时不能播放和录制 | 否 | 否 | 否 |
 | AVAudioSessionCategoryMultiRoute | 多种输入输出，例如可以耳机、USB设备同时播放 | 是 | 是 | 否 |
+
+#### 企业包下载地址
+
+```
+itms-services://?action=download-manifest&url=https://staticsci.xiaoenai.com/beta/ios/wake_beta2.plist
+```

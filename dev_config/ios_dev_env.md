@@ -25,6 +25,16 @@
 	
 > 如果安装过程卡住很久，那就要终端代理（shadowsocks）翻墙
 > `export http_proxy=http://127.0.0.1:1087;export https_proxy=http://127.0.0.1:1087;`
+
+##### 卸载 rbenv
+
+* Remove using brew and delete `.rbenv` directory
+
+	$ brew remove rbenv
+	$ rm -rf ~/.rbenv
+
+* Open `.bash_profile` file and delete any lines with rbenv in them: `$ vim ~/.bash_profile`
+* Open `.bashrc file` and delete any lines with rbenv in them: `$ vi ~/.bashrc`
 	
 #### 安装ruby
 
@@ -41,7 +51,7 @@
 
 #### 安装 bundler
 
-	$ gem install bundler
+	$ sudo gem install bundler
 	
 #### 使用 bundler 安装 cocoapods
 	

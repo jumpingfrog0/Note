@@ -201,7 +201,7 @@ objc_class中也有一个isa对象，这是因为一个 ObjC 类本身同时也�
 
 每个类仅有一个类对象，而每个类对象仅有一个与之相关的元类。当你发出一个类似[NSObject alloc]的消息时，你事实上是把这个消息发给了一个类对象 (Class Object) ，这个类对象必须是一个元类的实例，而这个元类同时也是一个根元类 (root meta class) 的实例。**所有的元类最终都指向根元类为其超类。所有的元类的方法列表都有能够响应消息的类方法。**所以当 [NSObject alloc] 这条消息发给类对象的时候，objc_msgSend()会去它的元类里面去查找能够响应消息的方法，如果找到了，然后对这个类对象执行方法调用。
 
-![](http://7ni3rk.com1.z0.glb.clouddn.com/Runtime/class-diagram.jpg)
+![](https://upload-images.jianshu.io/upload_images/2361648-4916caf2b141a8cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/850/format/webp)
 
 上图实线是 super_class 指针，虚线是isa指针。 有趣的是**根元类的超类是NSObject，而isa指向了自己，而NSObject的超类为nil，也就是它没有超类**。
 
@@ -227,7 +227,7 @@ objc_class中也有一个isa对象，这是因为一个 ObjC 类本身同时也�
 
 #### 消息转发
 
-![](http://7ni3rk.com1.z0.glb.clouddn.com/QQ20141113-1@2x.png?imageView2/2/w/800/q/75|watermark/2/text/eXVsaW5ndGlhbnhpYQ==/font/Y29taWMgc2FucyBtcw==/fontsize/500/fill/I0VGRUZFRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10)
+![](http://yulingtianxia.com/resources/QQ20141113-1@2x.png)
 
 \_objc\_msgForward消息转发做了如下几件事：
 

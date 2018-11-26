@@ -18,3 +18,8 @@ This file is created by Marboo<http://marboo.io> template file $MARBOO_HOME/.med
 2. `$ fastlane match appstore`
 3. 配置 xcconfig release 项
 4. 手动打包
+
+## 证书配置
+
+[https://codesigning.guide](https://codesigning.guide)
+

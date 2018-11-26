@@ -311,6 +311,13 @@ vnoremap <C-k> :m '<-2<CR>gv=gv
 
 ### .vimrc 配置
 
+要 source Vim 配置需要在 Vim 里执行：
+
+```
+:so %
+```
+%代表当前文件，这样就会重新加载vimrc配置了。
+
 以下是我的 vim 配置：
 
 ```vim
