@@ -118,6 +118,7 @@
 * `Cmd + Option + ↑/↓` : 上下切换窗口
 * `Cmd + [/]` : 切换窗口
 * `Cmd + 1` : 切换到第一个tab
+* `Cmd + Z` : 取消 tab/close window
 
 ## VSCode
 

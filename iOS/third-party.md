@@ -49,7 +49,11 @@
 
 [MGSwipeTableCell](https://github.com/MortimerGoro/MGSwipeTableCell)
 
+[FDFullscreenPopGesture](https://github.com/forkingdog/FDFullscreenPopGesture) -- 全局手势返回
+
 [JTSImageViewController](https://github.com/jaredsinclair/JTSImageViewController)
+
+[TZImagePickerController](https://github.com/banchichen/TZImagePickerController) -- 一个支持多选、选原图和视频的图片选择器，同时有预览、裁剪功能
 
 [ZLPhotoBrowser](https://github.com/longitachi/ZLPhotoBrowser) -- 相册多选
 
@@ -79,6 +83,7 @@
 
 ### 其他
 
+[CocoaLumberjack](https://github.com/CocoaLumberjack/CocoaLumberjack) -- 日志库
 
 [DOAlertController](https://github.com/okmr-d/DOAlertController)
 
@@ -147,6 +152,8 @@
 [EasyAnimation](https://github.com/icanzilb/EasyAnimation)
 
 [Gifu](https://github.com/kaishin/Gifu)
+
+[JHChainableAnimations](https://github.com/jhurray/JHChainableAnimations) -- 链式动画调用
 
 -----
 

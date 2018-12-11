@@ -151,8 +151,8 @@ pod trunk push [PATH] --verbose --allow-warning
 
 #### 推送私有到远程仓库
 
-	pod repo push privateRepo Category.podspec
-	pod repo push privateRepo Category.podspec --allow-warnings --verbose --sources=xspecs,master
+	pod repo push private-pod-repo Category.podspec
+	pod repo push private-pod-repo Category.podspec --allow-warnings --verbose --sources=xspecs,master
 	
 ### Lint & Cache
 	
@@ -388,6 +388,13 @@ source 要使用 https, 不能使用 ssh 的方式
 
 ```
 install! 'cocoapods', :deterministic_uuids => false
+```
+
+#### 9. fatal: ambiguous argument 'HEAD' error while updating pod
+
+```
+$ pod repo remove master
+$ pod setup
 ```
 
 ### lint 报错问题汇总

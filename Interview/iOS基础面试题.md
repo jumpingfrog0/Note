@@ -1,45 +1,5 @@
-iOS 面试题及解答
+iOS 基础面试题
 =========
-	
-## OC内存管理
-
-### 1. weak, strong, copy, assign, `__strong`, `__weak`, `__unsafe__unretained`之间的区别 (*)
-
-* assign: 一般用于修饰基本数据类型，不用来修饰对象，因为被assign修饰的对象在释放之后，指针并没有被置为nil，会造成野指针错误。
-* weak：用weak修饰对象会进行一次弱引用，引用计数器不变，并且对象在释放之后，指针地址会被置为nil。
-* strong：用strong修饰对象会进行一次强引用，会使引用计数器+1。当一个对象不再有strong类型的指针指向它的时候，它才会被释放，并且所有剩余的weak型指针都将被清除。
-* copy：在setter里直接调用传入对象的copy方法罢了，strong是两个指针指向同一个内存地址，copy会在内存里拷贝一份对象，（如果是深拷贝的话）两个指针指向不同的内存地址（如果是浅拷贝，两个指针指向相同的内容存地址，并且会使引用计数加1）。
-* `__strong`: strong 相当于retain，用于声明属性（property），而`__Strong`用于声明实例变量和局部变量，默认情况下实例变量和局部变量都是 strong 型的，所以你不需要再声明一遍。
-* `__weak`: 用于声明实例变量和局部变量
-* `__unsafe__unretained`: 类似于`__weak`，差别在于，当所指向的对象被释放时，`__unsafe__unretained` 修饰的指针不会被置为nil，而会成为野指针，正如它的名字 unsafe 所暗示的。这是应该极力避免的。但为什么还要用`__unsafe__unretained`呢，因为`__weak` 是 iOS5以后才出现的。
-
-### 2. 什么时候使用到weak?
-
-* 避免循环引用的情况下，比如：delegate，block
-* 自身已经对它进行一次强引用,没有必要再强引用一次,此时也会使用 weak,比如：自定义 IBOutlet 控件属性时，因为storyboard中会对UI控件产生一个强引用
-
-### 3. 引用循环(retain cycle)是怎样产生的？
-
-两个对象之间互相强引用，导致任一方的引用计数器都不可能变为0，谁也释放不了谁，这时就会产生循环引用。
-
-### 4. iOS 闭包中的[weak self]在什么情况下需要使用，什么情况下可以不加?
-
-一句话解释：只有当block直接或间接的被self持有时，才需要weak self。
-
-```objective-c
-// 这种情况没必要
-[self fetchDataWithSucess:^{
-     [self doSomething];
-}];
-	
-//这种情况就有必要
-self.onTapEvent = ^{
-    [self doSomething];
-};
-```
-
-
-## Other
 
 ### 1. 简述ViewController的生命周期
 
@@ -123,25 +83,6 @@ automic表明该属性使用了同步锁，是“原子性的”，但这并不�
 
 * 前者会对图片进行缓存，而后者只是简单的从硬盘加载文件。
 * 在整个程序运行的过程中，当你需要加载一张较大的图片，并且只会使用它一次，那么你就没必要缓存这个图片，这时你可以使用 `-[UIImage imageWithContentsOfFile:]`，这样系统也不会浪费内存来做缓存了。当然，如果你会多次使用到一张图时（比如UITableViewCell），用 `- [UIImage imageNamed:]` 就会高效很多，因为这样就不用每次都从硬盘上加载图片了。
-
-## 运行时runtime
-
-
-### 9. Runtime如何实现weak属性？
-
-[Runtime如何实现weak属性？](http://solacode.github.io/2015/10/21/Runtime%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0weak%E5%B1%9E%E6%80%A7%EF%BC%9F/)
-
-[weak是怎么实现的](http://www.jianshu.com/p/fe9865814668)
-
-[Why is weak_table_t a member of SideTable in Objective-C runtime?](http://stackoverflow.com/questions/35427340/why-is-weak-table-t-a-member-of-sidetable-in-objective-c-runtime)
-
-#### 10. 什么是RestFul API
-
-
-
-#### 11. 堆和栈的区别
-
-runtime 如何实现 weak 属性
 
 ## Swift
 

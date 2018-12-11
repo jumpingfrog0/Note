@@ -62,3 +62,9 @@ sudo su
 ```
 7z x filename.7z
 ```
+
+压缩
+
+```
+7z a myfile.7z mydirectory
+```

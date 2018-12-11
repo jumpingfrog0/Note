@@ -70,9 +70,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSMutableArray *mutableArray = [[NSMutableArray alloc] init];
+    
     NSArray *array = @[ @1, @2, @3, @4 ];
-
+    NSMutableArray *mutableArray = [NSMutableArray arrayWithArray:array];
+    
     self.array = mutableArray;
     [mutableArray removeAllObjects];;
     NSLog(@"%@",self.array);

@@ -33,26 +33,26 @@
  $ xcodebuild -configuration Release -sdk iphoneos
  ```
 
-	> iOS 中有四种不同编译环境的静态链接库：
-	> 
-	> * debug 模拟器
-	> * debug 真机
-	> * release 模拟器
-	> * release 真机
+> iOS 中有四种不同编译环境的静态链接库：
+> 
+> * debug 模拟器
+> * debug 真机
+> * release 模拟器
+> * release 真机
 
-	编译后就能如下四个目录了，其中目录中的 libHelloLib.a 就是编译后的静态库，include 文件夹是对外暴露的头文件。
+编译后就能如下四个目录了，其中目录中的 libHelloLib.a 就是编译后的静态库，include 文件夹是对外暴露的头文件。
 	
-	![](http://os3yasu4i.bkt.clouddn.com/dynamic_lib_compile.png)
+![](./images/static-lib-compile.png)
 	
-	可以使用命令 `lipo -info xxx`查看静态库所支持的CPU环境
+可以使用命令 `lipo -info xxx`查看静态库所支持的CPU环境
+
+	$ lipo -info build/Release-iphoneos/libHelloLib.a
+	$ lipo -info build/Release-iphonesimulator/libHelloLib.a
 	
-		$ lipo -info build/Release-iphoneos/libHelloLib.a
-		$ lipo -info build/Release-iphonesimulator/libHelloLib.a
-		
-	分别输出：
-	
-		Architectures in the fat file: build/Release-iphoneos/libHelloLib.a are: armv7 arm6
-		Architectures in the fat file: build/Release-iphonesimulator/libHelloLib.a are: i386 x86_64
+分别输出：
+
+	Architectures in the fat file: build/Release-iphoneos/libHelloLib.a are: armv7 arm6
+	Architectures in the fat file: build/Release-iphonesimulator/libHelloLib.a are: i386 x86_64
 		
  6. 合并静态库
 
@@ -96,7 +96,7 @@
 	```
 	编译后的目录
 	
-	![](http://os3yasu4i.bkt.clouddn.com/framework_compile.png)
+	![](./images/ios-framework-compile.png)
 	
 5. 合并
 
@@ -134,7 +134,7 @@
 * 将 xxx.framework 拖进项目工程即可
 * 一般情况下，我们会把 xxx.framework 中的 xxx.bundle 拖出来，放到与 xxx.framework 同级目录下的 resources 文件夹中
 
-	![](http://os3yasu4i.bkt.clouddn.com/QQ20170803-163613@2x.png)
+	![](./images/framework-resources.png)
 
 -------
 
