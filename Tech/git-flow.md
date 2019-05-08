@@ -54,6 +54,9 @@ $ git push origin develop
 
 [Using git-flow to automate your git branching workflow](http://jeffkreeftmeijer.com/2010/why-arent-you-using-git-flow/)
 
+[How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/)
+
+[git 资料汇总](https://github.com/xirong/my-git)
 
 ## Git Help & Tutorial
 
@@ -216,6 +219,10 @@ $ git push origin develop
 	
 - 从当前工作区中移除未追踪的文件，包括Git忽略的文件。
 	git clean -xf	
+
+**git stash**
+
+git stash apply stash@{2}
 	
 **回滚最近一次commit**
 

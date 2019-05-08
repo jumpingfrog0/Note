@@ -45,3 +45,22 @@ drwxrwxrwx 6 hans admin 204 10 1 2017 /usr/local/share/zsh/site-functions
 $ chmod 755 /usr/local/share/zsh
 $ chmod 755 /usr/local/share/zsh/site-functions
 ```
+
+### 修复Mac OS蓝牙异常
+
+进行 `PRAM` 和 `SMC` 重置。具体步骤如下
+
+#### PRAM 重置
+
+1. 关机，拔掉所有外设，接上电源。
+2. 启动时同时按住 Command, Option, p, r ， 听到三次 dang 的开机声音后放开。
+3. 启动电脑
+
+#### SMC 重置
+
+1. 关机，拔掉所有外设，接上电源。
+2. 同时按住 Shift, Control, Option, 电源键 ，此时电脑没有任何反应，等待十秒放开。
+3. 继续等待十秒，启动电脑。
+
+根据苹果客服，电脑出现其他奇葩情况时候也可以使用这个办法解决。
+

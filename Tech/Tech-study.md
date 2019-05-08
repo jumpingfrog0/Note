@@ -29,6 +29,8 @@ Tech Study
 
 [Bugly -- 技术团队博客](https://buglydevteam.github.io/)
 
+[网易乐得技术团队](http://tech.lede.com/)
+
 微信技术团队微信公众号 -- WeMobileDev
 
 ## 开发者社区
@@ -50,6 +52,10 @@ Tech Study
 [iOS Dev Weekly](https://iosdevweekly.com/)
 
 ## 大牛个人博客
+
+[SatanWoo -- 阿里大牛](http://satanwoo.github.io/archives/)
+
+[编程随想的博客](https://program-think.blogspot.com/)
 
 [JackJiang -- 音视频编解码&移动IM技术大牛](https://my.oschina.net/jb2011)
 
@@ -108,6 +114,8 @@ Tech Study
 [iWangKe.me -- 王轲](http://www.iwangke.me/)
 
 ## 不知名开发者个人博客
+
+[南峰子的技术博客](http://southpeak.github.io/)
 
 [雷纯锋的技术博客](http://blog.leichunfeng.com/blog/archives/)
 

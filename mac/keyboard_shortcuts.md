@@ -131,6 +131,9 @@
 * `Ctrl + G` : 移动光标到某行
 * `Shift + Tab` : 更改文件缩进
 
+* `gd` : 进入函数
+* `Ctrl + T` : 返回跳转之前的位置
+
 ## XCode
 
 * `Cmd + 1` : 打开 Project Navigator
@@ -218,4 +221,8 @@
 ### 添加 code snippets
 
 	Editor -> Live Templates -> ＋ -> Live Template
+
+### OmniPlan (甘特图)
+
+* `Shift + 拖动` : 将工作周的某个正常工作时间段标记为不可用
 

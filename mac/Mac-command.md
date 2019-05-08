@@ -93,6 +93,10 @@ Mac Command
 ### 查看视频分辨率
 
 	ffmpeg -i xxx
+
+### 监听端口号的数据
+
+	$ nc -lk 12345
 	
 ### Terminal shadowsocks proxy
 

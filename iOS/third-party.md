@@ -69,6 +69,12 @@
 
 [SDCycleScrollView](https://github.com/gsdios/SDCycleScrollView) -- Autoscroll Banner. 无限循环图片、文字轮播器。
 
+[ZJScrollPageView](https://github.com/jasnig/ZJScrollPageView) -- 滑块视图联动的效果
+
+[iCarousel](https://github.com/nicklockwood/iCarousel) -- 旋转木马
+
+[KMNavigationBarTransition](https://github.com/MoZhouqi/KMNavigationBarTransition) -- 统一管理导航栏转场
+
 ### Layout
 
 [Masonry](https://github.com/SnapKit/Masonry) -- easier Layout with objective-c
@@ -138,6 +144,8 @@
 [SSZipArchive](https://github.com/ZipArchive/ZipArchive) -- ZipArchive is a simple utility class for zipping and unzipping files on iOS and Mac.
 
 [BlocksKit](https://github.com/BlocksKit/BlocksKit/tree/master/BlocksKit) -- The Objective-C block utilities you always wish you had.
+
+[IQKeyboardManager](https://github.com/hackiftekhar/IQKeyboardManager) -- 解决键盘遮挡问题
 
 ### Animation
 

@@ -128,6 +128,21 @@ self.extendedLayoutIncludesOpaqueBars = YES;
 
 上面的代码意思是：view 的 container 向四周扩展，并且包含不透明的bar的区域，也就是导航栏的区域
 
+#### 透明/不透明
+
+iOS 8.2 以后，可以通过 `[setBackgroundImage:forBarMetrics]` 将 navigationBar 设置为透明:
+
+```
+[self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+```
+
+然而，使用其他颜色设置背景图片时，会导致 navigationBar 变成完全不透明的，此时 `translucent` 会变为 `NO`
+
+```
+UIImage *image = [[self class] bl_imageWithColor:[UIColor blueColor] size:CGSizeMake(1, 1)];
+[self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+```
+
 #### 自定义 UIBarButtonItem 的坑
 
 ##### 自定义 UIBarButtonItem 的 disable 的颜色 和 字体

@@ -147,3 +147,31 @@ parameters:@{
   @"pharmacy"           : ObjectOrNull(drunk.dumb),
 }
 ```
+
+### UITabBar 上投影效果
+
+```
+[self dropShadowWithOffset:CGSizeMake(0, -0.5) radius:1 color:[UIColor grayColor] opacity:0.3];
+
+// 添加tabbar上投影
+- (void)dropShadowWithOffset:(CGSize)offset
+                      radius:(CGFloat)radius
+                       color:(UIColor *)color
+                     opacity:(CGFloat)opacity {
+    
+    // Creating shadow path for better performance
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathAddRect(path, NULL, self.tabBar.bounds);
+    self.tabBar.layer.shadowPath = path;
+    CGPathCloseSubpath(path);
+    CGPathRelease(path);
+    
+    self.tabBar.layer.shadowColor = color.CGColor;
+    self.tabBar.layer.shadowOffset = offset;
+    self.tabBar.layer.shadowRadius = radius;
+    self.tabBar.layer.shadowOpacity = opacity;
+    
+    // Default clipsToBounds is YES, will clip off the shadow, so we disable it.
+    self.tabBar.clipsToBounds = NO;
+}
+```
