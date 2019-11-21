@@ -36,6 +36,11 @@ $ clang -g -O2 -o filename filename.c -I . -L . -l libname
 $ clang -g -o filename filename.c -l libname
 $ clang -g -o ffmpeg_test ffmpeg_test.c -lavutil
 ```
+pkg-config
+
+```
+clang -g -o list ffmpeg_list.c `pkg-config --libs libavformat libavutil`
+```
 
 ### 调试器原理
 

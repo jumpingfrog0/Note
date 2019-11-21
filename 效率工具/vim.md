@@ -183,6 +183,12 @@ Shift + V
 4. `//` : 输入注释符号
 5. `ESC` : 连续按连词 ESC 退出 
 
+### 取消注释
+
+1. `Ctrl + V` : 进入块选择模式
+2. 选中你要删除的行首的注释符号，注意// 要选中两个
+3. 选好之后按 `d` 即可删除注释
+
 ### 自定义快捷键
 
 Vim 通过 `map` 自定义快捷键，`map` 是一个映射命令，将常用的很长的命令映射到一个新的功能键上。
@@ -304,7 +310,9 @@ vnoremap <C-k> :m '<-2<CR>gv=gv
 * [plasticboy/vim-markdown](https://github.com/plasticboy/vim-markdown) : markdown 编辑插件
 * [altercation/vim-colors-solarized](https://github.com/altercation/vim-colors-solarized) : vim 配色
 * [mzlogin/vim-markdown-toc](https://github.com/mzlogin/vim-markdown-toc) : 生成markdown目录
-* ['jiangmiao/auto-pairs'](https://github.com/jiangmiao/auto-pairs) : 括号自动补全
+* [jiangmiao/auto-pairs](https://github.com/jiangmiao/auto-pairs) : 括号自动补全
+* [Svtter/ACM.vim](https://github.com/Svtter/ACM.vim/wiki) : 支持ACM的vim插件，用于对单文件的一键编译运行
+* [scrooloose/nerdcommenter](https://github.com/scrooloose/nerdcommenter) : 代码注释插件
 
 #### vim-plug 插件
 
@@ -320,6 +328,12 @@ vnoremap <C-k> :m '<-2<CR>gv=gv
 * `:GenTocGitLab` : 生成 [GitLab](https://docs.gitlab.com/ee/user/markdown.html) 风格的目录
 * `:UpdateToc` : 手动更新目录
 * `:RemoveToc` : 手动删除目录
+
+#### nerdcommenter
+
+* `<leader>cc` : 当行注释
+* `<leader>cb` : 多行注释
+* `<leader>cu` : 取消注释
 
 ### 插件快捷键
 
@@ -411,7 +425,8 @@ Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'mzlogin/vim-markdown-toc'
 Plugin 'altercation/vim-colors-solarized'
-"Plugin 'dbgx/lldb.nvim'
+Plugin 'Svtter/ACM.vim'
+Plugin 'scrooloose/nerdcommenter'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -467,17 +482,88 @@ call plug#end()
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => 一键编译 
+" => ACM配置 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
- 
-map <F5> :call Run()<CR>
+
+" 一键编译
+nmap <F5> :call Run()<CR>
 func! Run()
 	exec "w"
-	exec "!g++ -Wall % -o %<"
+	exec "!clang++ -Wall % -o %<"
 	exec "!./%<"
 endfunc
 
+"自动生成并打开.in文件， 方便放入输入数据。
+nmap<F2> : vs %<.in <CR> 
+"直接运行java程序并读入.in中的数据
+nmap<F4> : !clear && time java %< < %<.in <CR>
+"直接运行c++程序并读入.in中的数据
+"nmap<F5> : !clear && time ./%< < %<.in <CR>  
+
+" 打开.out
+nmap<F6> : vs %<.out <CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => 括号自动补全
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+:inoremap ( ()<ESC>i
+:inoremap ) <c-r>=ClosePair(')')<CR>
+:inoremap { {<CR>}<ESC>O
+:inoremap } <c-r>=ClosePair('}')<CR>
+:inoremap [ []<ESC>i
+:inoremap ] <c-r>=ClosePair(']')<CR>
+:inoremap " ""<ESC>i
+:inoremap ' ''<ESC>i
+
+function ClosePair(char)
+  if getline('.')[col('.') - 1] == a:char
+      return "\<Right>"
+  else
+      return a:char
+  endif
+endfunction
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => 一键补全ACM刷题头文件
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+map <F12> :call SetAcmTitle()<CR>
+func SetAcmTitle()
+let l = 0
+let l = l + 1 | call setline(l,'/************************************************')
+let l = l + 1 | call setline(l,'* Author        : jumpingfrog0')
+let l = l + 1 | call setline(l,'* Created Time  : '.strftime('%Y/%m/%d'))
+let l = l + 1 | call setline(l,'* File Name     : '.expand('%'))
+let l = l + 1 | call setline(l,'*************************************************/')
+let l = l + 1 | call setline(l,'')
+
+let l = l + 1 | call setline(l,'#include <iostream>')
+let l = l + 1 | call setline(l,'#include <cstdio>')
+let l = l + 1 | call setline(l,'#include <cstring>')
+let l = l + 1 | call setline(l,'#include <algorithm>')
+let l = l + 1 | call setline(l,'#include <string>')
+let l = l + 1 | call setline(l,'#include <cmath>')
+let l = l + 1 | call setline(l,'#include <cstdlib>')
+let l = l + 1 | call setline(l,'#include <vector>')
+let l = l + 1 | call setline(l,'#include <queue>')
+let l = l + 1 | call setline(l,'#include <set>')
+let l = l + 1 | call setline(l,'#include <map>')
+let l = l + 1 | call setline(l,'')
+let l = l + 1 | call setline(l,'using namespace std;')
+let l = l + 1 | call setline(l,'')
+let l = l + 1 | call setline(l,'int main()')
+let l = l + 1 | call setline(l,'{')
+let l = l + 1 | call setline(l,'	//freopen("in.txt","r",stdin);')
+let l = l + 1 | call setline(l,'	//freopen("out.txt","w",stdout);')
+let l = l + 1 | call setline(l,'    ')
+let l = l + 1 | call setline(l,'    return 0;')
+let l = l + 1 | call setline(l,'}')
+endfunc
+
 ```
+
+
+
 
 ```
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
