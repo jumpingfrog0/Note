@@ -2,18 +2,20 @@
 
 <!-- vim-markdown-toc GFM -->
 
-* [Application](#application)
-* [Chrome extensions](#chrome-extensions)
-* [Vim plugins](#vim-plugins)
-* [Terminal plugins](#terminal-plugins)
-* [Xcode extensions & tools](#xcode-extensions--tools)
-* [Other](#other)
-			* [老徐介绍的提高效率的工具](#老徐介绍的提高效率的工具)
-			* [私有云](#私有云)
-			* [下载(下载百度云的视频满速）](#下载下载百度云的视频满速)
-* [Website](#website)
-* [Other](#other-1)
-* [清理 MacKeeper 恶意软件](#清理-mackeeper-恶意软件)
+- [工具列表](#%e5%b7%a5%e5%85%b7%e5%88%97%e8%a1%a8)
+	- [装机必备](#%e8%a3%85%e6%9c%ba%e5%bf%85%e5%a4%87)
+	- [Application](#application)
+	- [Chrome extensions](#chrome-extensions)
+	- [Vim plugins](#vim-plugins)
+	- [Terminal plugins](#terminal-plugins)
+	- [Xcode extensions & tools](#xcode-extensions--tools)
+	- [Other](#other)
+				- [老徐介绍的提高效率的工具](#%e8%80%81%e5%be%90%e4%bb%8b%e7%bb%8d%e7%9a%84%e6%8f%90%e9%ab%98%e6%95%88%e7%8e%87%e7%9a%84%e5%b7%a5%e5%85%b7)
+				- [私有云](#%e7%a7%81%e6%9c%89%e4%ba%91)
+				- [下载(下载百度云的视频满速）](#%e4%b8%8b%e8%bd%bd%e4%b8%8b%e8%bd%bd%e7%99%be%e5%ba%a6%e4%ba%91%e7%9a%84%e8%a7%86%e9%a2%91%e6%bb%a1%e9%80%9f)
+	- [Website](#website)
+	- [Other](#other-1)
+	- [清理 MacKeeper 恶意软件](#%e6%b8%85%e7%90%86-mackeeper-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6)
 
 <!-- vim-markdown-toc -->
 
@@ -181,7 +183,7 @@ Mobile Developers](https://rollout.io/)
 
 [MD5 Hash](http://www.miraclesalad.com/webtools/md5.php) -- md5 工具
 
-[BeJson](http://www.bejson.com/) -- json 解析
+[json.cn](https://www.json.cn/) -- json 解析
 
 [URLEncode](http://tool.chinaz.com/tools/urlencode.aspx) -- URL 编解码
 

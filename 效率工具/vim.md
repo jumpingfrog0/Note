@@ -294,14 +294,22 @@ vnoremap <C-k> :m '<-2<CR>gv=gv
 
 [vim-plug](https://github.com/junegunn/vim-plug) 是 `vundle` 升级版，支持并行安装插件，异步加载插件，配合 [NeoVim](https://github.com/neovim/neovim) 可以安装一些比较高级的插件。
 
-#### vim 常用插件列表
+#### 手动安装的插件
 
-* [vim-markdown](https://github.com/plasticboy/vim-markdown) : markdown 编辑插件
-* [vim-colors-solarized](https://github.com/altercation/vim-colors-solarized) : vim 配色
-* [vim-markdown-toc](https://github.com/mzlogin/vim-markdown-toc) : 生成markdown目录
 * [vim-instant-markdown](https://github.com/suan/vim-instant-markdown) : markdown 预览插件(不能使用vundle安装，只能使用npm手动安装)
-* [nerdtree](https://github.com/scrooloose/nerdtree) : 树型文件管理系统
 
+#### vundle 插件
+
+* [VundleVim/Vundle.vim]() : 插件管理工具
+* [plasticboy/vim-markdown](https://github.com/plasticboy/vim-markdown) : markdown 编辑插件
+* [altercation/vim-colors-solarized](https://github.com/altercation/vim-colors-solarized) : vim 配色
+* [mzlogin/vim-markdown-toc](https://github.com/mzlogin/vim-markdown-toc) : 生成markdown目录
+* ['jiangmiao/auto-pairs'](https://github.com/jiangmiao/auto-pairs) : 括号自动补全
+
+#### vim-plug 插件
+
+* [dbgx/lldb.nvim]()
+* [scrooloose/nerdtree](https://github.com/scrooloose/nerdtree) : 树型文件管理系统
 
 ### 插件命令
 
@@ -471,3 +479,47 @@ endfunc
 
 ```
 
+```
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => 括号自动补全
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+ 
+function! AutoPair(open, close)
+        let line = getline('.')
+        if col('.') > strlen(line) || line[col('.') - 1] == ' '
+                return a:open.a:close."\<ESC>i"
+        else
+                return a:open
+        endif
+endf
+
+function! ClosePair(char)
+        if getline('.')[col('.') - 1] == a:char
+                return "\<Right>"
+        else
+                return a:char
+        endif
+endf
+
+function! SamePair(char)
+        let line = getline('.')
+        if col('.') > strlen(line) || line[col('.') - 1] == ' '
+                return a:char.a:char."\<ESC>i"
+        elseif line[col('.') - 1] == a:char
+                return "\<Right>"
+        else
+                return a:char
+        endif
+endf
+
+inoremap ( <c-r>=AutoPair('(', ')')<CR>
+inoremap ) <c-r>=ClosePair(')')<CR>
+inoremap { <c-r>=AutoPair('{', '}')<CR>
+inoremap } <c-r>=ClosePair('}')<CR>
+inoremap [ <c-r>=AutoPair('[', ']')<CR>
+inoremap ] <c-r>=ClosePair(']')<CR>
+inoremap " <c-r>=SamePair('"')<CR>
+inoremap ' <c-r>=SamePair("'")<CR>
+inoremap ` <c-r>=SamePair('`')<CR>
+
+```

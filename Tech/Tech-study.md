@@ -53,6 +53,8 @@ Tech Study
 
 ## 大牛个人博客
 
+[pjhubs](http://pjhubs.com/)
+
 [SatanWoo -- 阿里大牛](http://satanwoo.github.io/archives/)
 
 [编程随想的博客](https://program-think.blogspot.com/)

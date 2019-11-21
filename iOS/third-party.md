@@ -57,6 +57,8 @@
 
 [ZLPhotoBrowser](https://github.com/longitachi/ZLPhotoBrowser) -- 相册多选
 
+[LGPhotoBrowser](https://github.com/gang544043963/LGPhotoBrowser) -- 照片浏览器，相册选择器，自定义照相机（支持单拍、连拍）
+
 [DACircularProgress](https://github.com/danielamitay/DACircularProgress)
 
 [LTNavigationBar](https://github.com/ltebean/LTNavigationBar)
@@ -65,7 +67,7 @@
 
 [MWPhotoBrowser](https://github.com/mwaterfall/MWPhotoBrowser) -- A simple iOS photo and video browser with optional grid view, captions and selections.
 
-[ECSlidingViewController](https://github.com/ECSlidingViewController/ECSlidingViewController) -- Customizable sliding view controller container.
+[ECSlidingViewController](https://github.com/ECSlidingViewController/ECSlidingViewController) -- Customizable sliding view controller container. 抽屉框架
 
 [SDCycleScrollView](https://github.com/gsdios/SDCycleScrollView) -- Autoscroll Banner. 无限循环图片、文字轮播器。
 

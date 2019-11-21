@@ -30,6 +30,13 @@ $ clang -g -O2 -o filename filename.c -I . -L . -l libname
 
 `libtool -static -o libmylib.a add.o`
 
+#### 编译 .c 文件
+
+```
+$ clang -g -o filename filename.c -l libname
+$ clang -g -o ffmpeg_test ffmpeg_test.c -lavutil
+```
+
 ### 调试器原理
 
 * 编译输出带调试信息的程序

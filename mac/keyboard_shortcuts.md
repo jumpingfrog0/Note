@@ -3,28 +3,31 @@
 ## Table of Contents
 <!-- vim-markdown-toc GFM -->
 
-* [Mac](#mac)
-* [Chrome](#chrome)
-* [Alfred](#alfred)
-	* [Alfred System Feature](#alfred-system-feature)
-* [AppCode](#appcode)
-* [Marboo](#marboo)
-* [Sublime Text 3](#sublime-text-3)
-* [Terminal](#terminal)
-* [iTerm2](#iterm2)
-* [VSCode](#vscode)
-* [XCode](#xcode)
-* [钉钉](#钉钉)
-* [Vimium](#vimium)
-	* [Navigating the page](#navigating-the-page)
-	* [Using the vomnibar](#using-the-vomnibar)
-	* [Using find](#using-find)
-	* [Navigating history](#navigating-history)
-	* [Manipulating tabs](#manipulating-tabs)
-	* [Miscellaneous](#miscellaneous)
-* [App Code Setting](#app-code-setting)
-	* [代码提示不区分大小写](#代码提示不区分大小写)
-	* [添加 code snippets](#添加-code-snippets)
+- [Keyboard Shortcuts](#keyboard-shortcuts)
+	- [Table of Contents](#table-of-contents)
+	- [Mac](#mac)
+	- [Chrome](#chrome)
+	- [Alfred](#alfred)
+		- [Alfred System Feature](#alfred-system-feature)
+	- [AppCode](#appcode)
+	- [Marboo](#marboo)
+	- [Sublime Text 3](#sublime-text-3)
+	- [Terminal](#terminal)
+	- [iTerm2](#iterm2)
+	- [VSCode](#vscode)
+	- [XCode](#xcode)
+	- [钉钉](#%e9%92%89%e9%92%89)
+	- [Vimium](#vimium)
+		- [Navigating the page](#navigating-the-page)
+		- [Using the vomnibar](#using-the-vomnibar)
+		- [Using find](#using-find)
+		- [Navigating history](#navigating-history)
+		- [Manipulating tabs](#manipulating-tabs)
+		- [Miscellaneous](#miscellaneous)
+	- [App Code Setting](#app-code-setting)
+		- [代码提示不区分大小写](#%e4%bb%a3%e7%a0%81%e6%8f%90%e7%a4%ba%e4%b8%8d%e5%8c%ba%e5%88%86%e5%a4%a7%e5%b0%8f%e5%86%99)
+		- [添加 code snippets](#%e6%b7%bb%e5%8a%a0-code-snippets)
+		- [OmniPlan (甘特图)](#omniplan-%e7%94%98%e7%89%b9%e5%9b%be)
 
 <!-- vim-markdown-toc -->
 
@@ -85,6 +88,10 @@
 * `Cmd + Ctrl + O` : 重载父类方法
 * `Cmd + Ctrl + I` : 实现声明的方法或协议中的方法
 * `Cmd + Ctrl + E` : 重命名
+* `Cmd + Shift + J` : 定位到文件所在位置
+
+* `Cmd + Ctrl + J` : 跳转掉函数定义的地方
+* `Ctrl + option + O` : 去除多余import
 
 * `F1` : 查看注释
 * `/**<enter>` : 文档注释
@@ -150,6 +157,7 @@
 * `Cmd + Shift + Option + F` : 全局替换
 * `Cmd + Option + J` : 导航栏文件过滤
 * `Cmd + \` : 在光标所在行打断点
+* `Cmd + Ctrl + ←/→` : back/forward
 
 
 ## 钉钉

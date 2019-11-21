@@ -260,6 +260,19 @@ git stash apply stash@{2}
 	# 基于某个commit开始进行rebase
 	git rebase -i <sha1>
 
+**rollback a rebase**
+
+```
+$ git reflog
+
+b710729 HEAD@{0}: rebase: some commit
+5ad7c1c HEAD@{1}: rebase: another commit
+deafcbf HEAD@{2}: checkout: moving from master to my-branch
+...
+
+$ git reset HEAD@{2} --hard
+```
+
 **fatal: refusing to merge unrelated histories**
 
 [Git refusing to merge unrelated histories](http://stackoverflow.com/questions/37937984/git-refusing-to-merge-unrelated-histories)

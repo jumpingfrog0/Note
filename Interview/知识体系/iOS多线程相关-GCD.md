@@ -768,68 +768,121 @@ dispatch_suspend(queue); //暂停队列queue
 dispatch_resume(queue);  //恢复队列queue
 ```
 
-#### dispatch\_semaphore\_signal
+### 信号量
 
-信号量，如果信号量计数大于或等于1，那个允许线程执行，如果信号量当前计数为0，线程将阻塞。
+GCD 中的信号量是指 Dispatch Semaphore，是持有计数的信号。类似于过高速路收费站的栏杆。可以通过时，打开栏杆，不可以通过时，关闭栏杆。在 Dispatch Semaphore 中，计数小于0时等待，不可通过。计数大于或等于0时，可通过。
 
-创建信号量
+Dispatch Semaphore 提供了三个函数。
+
+* `dispatch_semaphore_create`：创建一个Semaphore并初始化信号的总量
+* `dispatch_semaphore_signal`：发送一个信号，让信号总量加1
+* `dispatch_semaphore_wait`：可以使总信号量减1，当信号总量小于0时就会一直等待（阻塞所在线程），否则就可以正常执行。
+
+Dispatch Semaphore 在实际开发中主要用于：
+
+* 保持线程同步，将异步执行任务转换为同步执行任务
+* 保证线程安全，为线程加锁
+
+#### Dispatch Semaphore 线程同步
+
+我们在开发中，会遇到这样的需求：异步执行耗时任务，并使用异步执行的结果进行一些额外的操作。换句话说，相当于，将将异步执行任务转换为同步执行任务。比如说：AFNetworking 中 AFURLSessionManager.m 里面的 `tasksForKeyPath:` 方法。通过引入信号量的方式，等待异步执行任务结果，获取到 tasks，然后再返回该 tasks。
+
+```objective-c
+- (NSArray *)tasksForKeyPath:(NSString *)keyPath {
+    __block NSArray *tasks = nil;
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    [self.session getTasksWithCompletionHandler:^(NSArray *dataTasks, NSArray *uploadTasks, NSArray *downloadTasks) {
+        if ([keyPath isEqualToString:NSStringFromSelector(@selector(dataTasks))]) {
+            tasks = dataTasks;
+        } else if ([keyPath isEqualToString:NSStringFromSelector(@selector(uploadTasks))]) {
+            tasks = uploadTasks;
+        } else if ([keyPath isEqualToString:NSStringFromSelector(@selector(downloadTasks))]) {
+            tasks = downloadTasks;
+        } else if ([keyPath isEqualToString:NSStringFromSelector(@selector(tasks))]) {
+            tasks = [@[dataTasks, uploadTasks, downloadTasks] valueForKeyPath:@"@unionOfArrays.self"];
+        }
+
+        dispatch_semaphore_signal(semaphore);
+    }];
+
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+
+    return tasks;
+}
+```
+
+#### 线程安全（使用 semaphore 加锁）
+
+```objective-c
+/**
+ * 线程安全：使用 semaphore 加锁
+ * 初始化火车票数量、卖票窗口(线程安全)、并开始卖票
+ */
+- (void)initTicketStatusSave {
+    NSLog(@"currentThread---%@",[NSThread currentThread]);  // 打印当前线程
+    NSLog(@"semaphore---begin");
+    
+    semaphoreLock = dispatch_semaphore_create(1);
+    
+    self.ticketSurplusCount = 50;
+    
+    // queue1 代表北京火车票售卖窗口
+    dispatch_queue_t queue1 = dispatch_queue_create("net.bujige.testQueue1", DISPATCH_QUEUE_SERIAL);
+    // queue2 代表上海火车票售卖窗口
+    dispatch_queue_t queue2 = dispatch_queue_create("net.bujige.testQueue2", DISPATCH_QUEUE_SERIAL);
+    
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(queue1, ^{
+        [weakSelf saleTicketSafe];
+    });
+    
+    dispatch_async(queue2, ^{
+        [weakSelf saleTicketSafe];
+    });
+}
+
+/**
+ * 售卖火车票(线程安全)
+ */
+- (void)saleTicketSafe {
+    while (1) {
+        // 相当于加锁
+        dispatch_semaphore_wait(semaphoreLock, DISPATCH_TIME_FOREVER);
+        
+        if (self.ticketSurplusCount > 0) {  //如果还有票，继续售卖
+            self.ticketSurplusCount--;
+            NSLog(@"%@", [NSString stringWithFormat:@"剩余票数：%d 窗口：%@", self.ticketSurplusCount, [NSThread currentThread]]);
+            [NSThread sleepForTimeInterval:0.2];
+        } else { //如果已卖完，关闭售票窗口
+            NSLog(@"所有火车票均已售完");
+            
+            // 相当于解锁
+            dispatch_semaphore_signal(semaphoreLock);
+            break;
+        }
+        
+        // 相当于解锁
+        dispatch_semaphore_signal(semaphoreLock);
+    }
+}
+```
+
+输出结果为：
 
 ```
-dispatch_semaphore_t semaphore = dispatch_semaphore_create(1);
-```
-
-发出等待信号（信号量计数减1）
-
-```
-dispatch_semaphore_wait(_semaphore, DISPATCH_TIME_FOREVER);
-```
-
-发出通行信号 （信号量计数加1）
-
-```
-dispatch_semaphore_signal(_semaphore);
-```
-
-```
-// 其实这个没研究懂 =_=||
-// 传递的参数是信号量最初值,下面例子的信号量最初值是1
-dispatch_semaphore_t signal = dispatch_semaphore_create(1);
-    
-dispatch_time_t overTime = dispatch_time(DISPATCH_TIME_NOW, 5 * NSEC_PER_SEC);
-    
-dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    
-    // 当信号量是0的时候,dispatch_semaphore_wait(signal, overTime);这句代码会一直等待直到overTime超时.
-    //这里信号量是1 所以不会在这里发生等待.
-    dispatch_semaphore_wait(signal, overTime);
-    NSLog(@"需要线程同步的操作1 开始");
-    sleep(2);
-    NSLog(@"需要线程同步的操作1 结束");
-    long signalValue = dispatch_semaphore_signal(signal);//这句代码会使信号值 增加1
-    //并且会唤醒一个线程去开始继续工作,如果唤醒成功,那么返回一个非零的数,如果没有唤醒,那么返回 0
-    
-    NSLog(@"%ld",signalValue);
-});
-    
-dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    sleep(1);
-    dispatch_semaphore_wait(signal, overTime);
-    NSLog(@"需要线程同步的操作2");
-    dispatch_semaphore_signal(signal);
-    long signalValue = dispatch_semaphore_signal(signal);
-    
-    NSLog(@"%ld",signalValue);
-});
-    
-dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    sleep(1);
-    dispatch_semaphore_wait(signal, overTime);
-    NSLog(@"需要线程同步的操作3");
-    dispatch_semaphore_signal(signal);
-    long signalValue = dispatch_semaphore_signal(signal);
-    
-    NSLog(@"%ld",signalValue);
-});
+currentThread---<NSThread: 0x6000000783c0>{number = 1, name = main}
+semaphore---begin
+剩余票数：49 窗口：<NSThread: 0x6040002709c0>{number = 3, name = (null)}
+剩余票数：48 窗口：<NSThread: 0x60000046c640>{number = 4, name = (null)}
+剩余票数：47 窗口：<NSThread: 0x6040002709c0>{number = 3, name = (null)}
+......
+剩余票数：4 窗口：<NSThread: 0x60000046c640>{number = 4, name = (null)}
+剩余票数：3 窗口：<NSThread: 0x6040002709c0>{number = 3, name = (null)}
+剩余票数：2 窗口：<NSThread: 0x60000046c640>{number = 4, name = (null)}
+剩余票数：1 窗口：<NSThread: 0x6040002709c0>{number = 3, name = (null)}
+剩余票数：0 窗口：<NSThread: 0x60000046c640>{number = 4, name = (null)}
+所有火车票均已售完
+所有火车票均已售完
 ```
 
 ## 其他
