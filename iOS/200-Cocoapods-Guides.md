@@ -1,9 +1,13 @@
-CocoaPods Guides
-================
+# CocoaPods Guides
+
+<!--
+create time: 2019-12-05 10:10:00
+Author: <黄东鸿>
+-->
 
 Cocoapods 是 iOS 的一个第三方库管理工具。
 
-[使用私有Cocoapods仓库 中高级用法](https://www.jianshu.com/p/d6a592d6fced)
+参考：[使用私有Cocoapods仓库 中高级用法](https://www.jianshu.com/p/d6a592d6fced)
 
 ## 安装
 
@@ -11,70 +15,23 @@ Cocoapods 是 iOS 的一个第三方库管理工具。
 
 The Podfile: [http://guides.cocoapods.org/using/the-podfile.html](http://guides.cocoapods.org/using/the-podfile.html)
 
-### 安装过程中可能遇到的问题
-
-#### 1. 执行完install命令半天没反应
-
-这有可能是因为Ruby的默认源使用的是`cocoapods.org`，国内访问这个网址有时候会有问题，网上的一种解决方案是将远替换成淘宝的，替换方式如下：
-
-	$ gem sources --remove https://rubygems.org/
-	
-等有反应之后再敲入以下命令
-
-	$ gem sources -a https://ruby.taobao.org/
-
-要想验证是否替换成功了，可以执行：
-
-	$ gem sources -l
-
-正常的输出是：
-
-	*** CURRENT SOURCES ***
-	http://ruby.taobao.org/
-
-#### 2. gem版本过老
-
-gem是管理Ruby库和程序的标准包，如果它的版本过低也可能导致安装失败，解决方案自然是升级gem，执行下述命令即可：
-
-	$ sudo gem update --system
-
-#### 3. 安装完成后，执行pod setup命令时报错：
+使用 `Bundle` 进行安装
 
 ```
-/Users/wangzz/.rvm/rubies/ruby-1.9.3-p448/lib/ruby/site_ruby/1.9.1/rubygems/dependency.rb:298:in `to_specs': Could not find 'cocoapods' (>= 0) among 6 total gem(s) (Gem::LoadError) 
-from /Users/wangzz/.rvm/rubies/ruby-1.9.3-p448/lib/ruby/site_ruby/1.9.1/rubygems/dependency.rb:309:in `to_spec'
-from /Users/wangzz/.rvm/rubies/ruby-1.9.3-p448/lib/ruby/site_ruby/1.9.1/rubygems/core_ext/kernel_gem.rb:53:in `gem'
-from /Users/wangzz/.rvm/rubies/ruby-1.9.3-p448/bin/pod:22:in `<main>'
+$ sudo gem install bundler
+
+## 可以把 Gemfile 放在任意目录
+$ cd ~/Documents/dev
+$ bundle init
+$ vim Gemfile (添加 gem 'cocoapods', '~> 1.7.5')
+$ bundle install
+
+## 查看 cocoapods 安装的路径
+$ bundle info cocoapods 
+
+## 查看 cocoapods 版本
+$ pod --version
 ```
-
-这就是路径设置的问题，可以通过执行：
-
-	$ rvm use ruby-1.9.3-p448
-	
-解决该问题。
-
-### 选择版本
-
-#### uninstall
-
-	sudo gem uninstall cocoapods
-
-#### install
-
-	sudo gem install cocoapods
-	
-#### 卸载对应的版本
-
-	gem uninstall cocoapods -v 0.20.2
-	
-#### 安装对应的版本
-
-	sudo gem install cocoapods -v 1.0.1
-	
-#### 查看已经安装了哪些版本
-
-	sudo gem list cocoapods
-	
 
 ## Podfile 配置
 
@@ -376,6 +333,7 @@ git clean -f
 
 ```
 pod trunk register yourEmail@example.com 'Your Name'
+pod trunk register jumpingfrog0@gmail.com jumpingfrog0
 ```
 
 #### 7. pod truck push 报错 `Source code for your Pod was not accessible to CocoaPods Trunk. Is it a private repo or behind a username/password on http?`

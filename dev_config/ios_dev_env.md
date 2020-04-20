@@ -49,6 +49,9 @@
 	$ rvm use 2.3.1
 	$ rvm list
 
+	## 修改默认ruby版本
+	$ rvm --default use 2.6.0
+
 #### 安装 bundler
 
 	$ sudo gem install bundler
@@ -58,7 +61,7 @@
 	## 可以把 Gemfile 放在任意目录
 	$ cd ~/Documents/dev
 	$ bundle init
-	$ vim Gemfile (添加 gem 'cocoapods', '~> 1.0.1')
+	$ vim Gemfile (添加 gem 'cocoapods', '~> 1.7.5')
 	$ bundle install
 	
 	## 查看 cocoapods 安装的路径

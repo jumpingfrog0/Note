@@ -6,11 +6,13 @@
 
 这个对程序员来说简直是福音，简单的指令，就能快速安装和升级本地的各种开发环境。
 
-[brew cask](https://caskroom.github.io/) 是已经编译好了的应用包（.dmg/.pkg），仅仅是下载解压，放在统一的目录中(opt/homebrew-cask/Caskroom)，省掉了自己去下载、解压、拖拽（安装）等蛋疼步骤，同样，卸载相当容易与干净。这个对一般用户来说会比较方便，包含很多在AppStore里没有的常用软件。
+[brew cask](https://caskroom.github.io/) 是 HomeBrew 的扩展，借助它可以方便地在macOS上安装图形界面程序，即我们常用的各类应用。已经编译好了的应用包（.dmg/.pkg），仅仅是下载解压，放在统一的目录中(opt/homebrew-cask/Caskroom)，省掉了自己去下载、解压、拖拽（安装）等蛋疼步骤，同样，卸载相当容易与干净。这个对一般用户来说会比较方便，包含很多在AppStore里没有的常用软件。
 
 `brew` 主要用来安装一些不带界面的命令行工具和第三个库来进行二次开发
 
 `brew cask` 装的大多数是有GUI界面的应用。
+
+`brew cask` 的安装目录是 `/usr/local/Homebrew/Library/Taps/homebrew/homebrew-core`
 
 ```
 # install brew
@@ -36,6 +38,12 @@ tap 命令的仓库源默认来至于 Github，但是这个命令也不限制于
     
 保存，然后运行 `source ~/.zshrc` 时更改生效
 
+升级软件
+
+```
+brew upgrade aria2
+```
+
 ### 可以使用 homebrew 安装的工具或软件：
 
 安装命令：
@@ -50,7 +58,7 @@ tap 命令的仓库源默认来至于 Github，但是这个命令也不限制于
 * vundle
 * tree
 * node
-* 7zip
+* p7zip
 * nginx
 
 

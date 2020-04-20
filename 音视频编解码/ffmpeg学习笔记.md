@@ -35,6 +35,22 @@ Mux: 封装（转换成MP4等视频格式）
 
 解复用 --> 获取流 --> 读数据包 --> 释放资源
 
+#### 抽取视频数据
+
+* Start code : 帧的特征码，分隔视频帧
+* SPS/PPS : 解码的视频参数，分辨率、帧率等
+* codec -> extradata
+
+#### 将 MP4 转成 FLV 格式
+
+* avformat_alloc_output_context2() : 新建输出上下文
+* avformat_free_context() : 释放上下文
+* avformat_new_stream() : 创建流
+* avcodec_parameters_copy(): 拷贝编码参数
+* avformat_write_header(): 写多媒体文件头
+* av_write_frame() / av_interleaved_write_frame():
+* av_write_trailer() : 写尾部数据
+
 ## FFmpeg API
 
 ### libavutil

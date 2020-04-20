@@ -288,7 +288,7 @@ $ git reset HEAD@{2} --hard
 For example, if your commit history is A-B-C-D-E-F with F as HEAD, and you want to change the author of C and D, then you would...
 
 1. Specify git rebase -i B
-2. change the lines for both C and D to edit
+2. change the lines for both C and D to `edit`
 3. Once the rebase started, it would first pause at C
 4. You would git commit --amend --author="Author Name <email@address.com>"
 5. Then git rebase --continue

@@ -1,6 +1,12 @@
 Mac Command
 ===========
 
+### 删除多余的模拟器
+
+```shell
+$ xcrun simctl delete unavailable
+```
+
 ### 删除Launchpad残留图标
 
 	$ defaults write com.apple.dock ResetLaunchPad -bool true
@@ -36,17 +42,6 @@ Mac Command
 ### 文件 MD5
 
 	$ md5 path/to/filename
-	
-### 修改host
-
-	## 打开文件
-	$ sudo nano /etc/hosts
-	
-	## 保存
-	$ Ctrl + X, Y
-	
-	## 刷新DNS
-	$ sudo killall -HUP mDNSResponder return
 
 ### Command
 
@@ -62,30 +57,6 @@ Mac Command
 	$ curl ip.cn
 	$ curl cip.cc
 	
-### 登录远程服务器
-
-	$ ssh username@127.0.0.1
-	
-### 修改服务器Shadowsocks配置文件
-
-	$ vim /etc/shadowsocks.json
-	
-### 远程服务器下载
-
-	$ wget https://xxxx.zip
-	
-### 从服务器下载文件到本地
-
-	$ scp jumpingfrog0@104.238.160.7:/home/jumpingfrog0/Paper-osx-1.1.2.zip ~/Desktop
-	
-### 查看命令行历史记录
-
-	$ history
-		
-### openssh 加密文件
-
-	$ openssl aes-256-cbc -k "<password>" -in "<fileYouWantToDecryptPath>" -out "<decryptedFilePath>" -a -d
-	
 ### 查看llvm版本
 
 	llvm-gcc -v
@@ -93,12 +64,8 @@ Mac Command
 ### 查看视频分辨率
 
 	ffmpeg -i xxx
-
-### 监听端口号的数据
-
-	$ nc -lk 12345
 	
-### Terminal shadowsocks proxy
+### **Terminal shadowsocks proxy**
 
 ### 查看安装目录
 
@@ -166,10 +133,27 @@ Mac Command
 	$ reboot						# 重启
 	```
 
-	### 解压缩
+### 解压缩
 
 	解压
 
 	```terminal
 	tar xxx.tar.xz
 	```
+
+### Xcode 加载插件命令
+
+```
+find ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins -name Info.plist -maxdepth 3 | xargs -I{} defaults write {} DVTPlugInCompatibilityUUIDs -array-add `defaults read /Applications/Xcode.app/Contents/Info.plist DVTPlugInCompatibilityUUID`
+
+```
+
+### 添加右键脚本工具
+
+1. 打开 `Automator.app`
+2. 选择 `实用工具` --> `运行Shell脚本` --> 拖动到右边新建一个脚本
+3. 传递输入 选择 `作为自变量`
+4. 工作流程收到当前选择工具应用的文件类型（如：图像文件）
+5. 粘贴脚本，保存，命名脚本工具（如tinypng_compress)
+6. 右键 --> 服务 --> tinypng_compress
+7. 脚本运行，在右上角的工具栏中会有一个齿轮⚙在转，脚本运行完成后齿轮消失
