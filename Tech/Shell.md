@@ -103,6 +103,11 @@ for line in $(cat ${config_file})
 $(cmd)
 ```
 
+### 路径/文件名相关
+
+* `dirname $file` : 该文件当前的上一层路径
+* `basename $file` : 文件名（去除目录后剩下的名字）
+
 ### 字符串
 
 判断字符串长度是否为0
