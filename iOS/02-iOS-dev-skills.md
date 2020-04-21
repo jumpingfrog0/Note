@@ -26,11 +26,7 @@
 
 	/Applications/Xcode-beta.app/Contents/Developer/Platforms/iPhoneOS.platform/DeviceSupport/11.0 (15A5304f)
 
-### 设置按钮不同状态背景色
-
 ### 设置按钮不同状态boderColor
-
-### 按钮 system 和 custom 区别
 
 ### UITableView 奇淫技巧
 

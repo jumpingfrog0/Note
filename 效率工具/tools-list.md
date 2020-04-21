@@ -57,7 +57,7 @@
 
 [Shadowsocks]() -- 翻墙工具
 
-[Xmide](https://xclient.info/s/xmind.html) -- 思维导图
+[Xmind](https://xclient.info/s/xmind.html) -- 思维导图
 
 [Charles](https://xclient.info/s/charles.html) -- 抓包工具
 
@@ -72,6 +72,8 @@
 [Macdow](https://macdown.uranusjr.com/) -- markdown 编辑器
 
 [typora](https://typora.io/) -- markdown 编辑器
+
+[Finder go](https://github.com/onmyway133/FinderGo) -- 🐢 Open terminal quickly from Finde
 
 ## Chrome extensions
 
@@ -122,13 +124,13 @@
 
 ## Xcode extensions & tools
 
-[VVDocumenter-Xcode](https://github.com/onevcat/VVDocumenter-Xcode) - Xcode plug-in which helps you write documentation comment easier
-
-[xvim](https://github.com/XVimProject/XVim) -- Xcode plugin for Vim keybindings
-
 [xUnique](https://github.com/truebit/xUnique) -- merge Xcode project file is so easy（project.pbxproj 进行唯一化处理的工具，减少解决 pbxproj 文件冲突时耗时并且容易出错的问题）
 
 [XVim2](https://github.com/XVimProject/XVim2) -- Vim key-bindings for Xcode 9
+
+## VSCode Plugins
+
+[vscode-markdown-preview-enhanced](https://github.com/shd101wyy/vscode-markdown-preview-enhanced) -- "BEST" markdown preview extensions
 
 ## Other
 
@@ -141,9 +143,9 @@ Sizeup
 [Real Time App Control for
 Mobile Developers](https://rollout.io/)
 
-[json-server](https://www.npmjs.com/package/json-server) - Serves JSON files through REST routes. 
-
 [easy-mock](https://github.com/easy-mock/easy-mock) -- 模拟数据
+
+[yaip](https://github.com/YMFE/yapi) -- mock server
 
 [font-awesome](http://fontawesome.io/)
 
@@ -160,16 +162,6 @@ Mobile Developers](https://rollout.io/)
 	dash，moom，day one, istat, marboo, mindnode, wunderlist, macdown, navicat premium, brew(cask)
 	macvim
 	欧路字典，zsh
-	
-##### 私有云
-
-[owncloud](https://owncloud.org/) - private cloud
-
-[daocloud](http://www.daocloud.io/) - docker cloud
-
-[云盘一个个倒下怎么办？无需编码，手把手教你搭建至尊私享云盘](https://zhuanlan.zhihu.com/p/23156514?from=timeline&isappinstalled=1)
-
-[Seafile](https://www.seafile.com/home/)
 
 ##### 下载(下载百度云的视频满速）
 
