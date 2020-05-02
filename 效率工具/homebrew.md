@@ -26,7 +26,7 @@ $ brew tap caskroom/cask
 
 tap 命令的仓库源默认来至于 Github，但是这个命令也不限制于这一个地方。更多资料参考这篇[文章](https://segmentfault.com/a/1190000012826983)
 
-### 查看安装目录
+### 查看工具信息
 
 	brew info xxx
     
@@ -50,6 +50,11 @@ brew upgrade aria2
 
 	brew install xxx
 
+安装目录：
+
+```
+/usr/local/Cellar/  或  /usr/local/opt/
+```
 
 * jq
 * neovim

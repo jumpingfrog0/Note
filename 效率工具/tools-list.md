@@ -134,7 +134,9 @@
 
 ## Other
 
-Sizeup
+[PlantText UML Editor](https://www.planttext.com/) -- PlantUML 编辑器
+
+[PlantText UML Syntax](https://plantuml.com/) -- PlantUML 语法
 
 [netfox](https://github.com/kasketis/netfox)
 

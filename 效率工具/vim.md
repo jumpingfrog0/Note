@@ -169,6 +169,7 @@ Shift + V
 * `:!ls` : 等同于在 Shell 终端执行 *ls* 命令。
 * `:w` : 保存
 * `:q` : 退出
+* `:noh` : 取消 highlighted search
 
 ### 函数跳转
 
@@ -343,6 +344,13 @@ vnoremap <C-k> :m '<-2<CR>gv=gv
 
 * `Ctrl + n` : 打开/关闭 nerdtree（自定义的map）
 * `Ctrl + w + w` : 左右切换窗口
+
+### vimrc 配置含义
+
+[vim技巧：詳解tabstop、softtabstop、expandtab三個選項的區別](https://kknews.cc/code/gp46ae8.html)
+
+* showcmd : 命令模式下，在底部显示，当前键入的指令。
+* relativenumber : 可以将行号变成相对于当前行的方式来显示，它可以帮你快速的精确定位距离当前行的偏移数。比如，当前行是第 27 行，如果我想去往前的14行，我就敲 14k；如果我想去往后的8行，我就敲 8j，方便吧。
 
 
 ### .vimrc 配置

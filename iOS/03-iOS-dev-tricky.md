@@ -278,20 +278,6 @@ UIScrollView 需要添加以下代码避免ScrollView顶到 NavigationBar 上边
 	// 错误写法
     NSString *j = [NSJSONSerialization JSONObjectWithData:d options:0 error:&err];
     NSLog(@"%@",j);  // nil
-    
-### iOS 11 中 UITableView Header Height
-
-[iOS 11 Floating TableView Header](https://stackoverflow.com/questions/46246924/ios-11-floating-tableview-header)
-
-在 iOS 11 中，如果同时设置了 `tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section` 和 `tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section`，需要如下设置：
-
-	self.tableView.estimatedRowHeight = 0;
-	self.tableView.estimatedSectionHeaderHeight = 0;
-	self.tableView.estimatedSectionFooterHeight = 0;
-	
-### UITableView 的分割线没有显示
-
-原因：自定义 UITableViewCell 重写了 layoutSubviews，但是没有调用 super 方法。
 
 ### UISearchBar 的坑
 
@@ -484,3 +470,100 @@ options.predicate = [NSPredicate predicateWithFormat:@"mediaType = %d",PHAssetMe
 5. Name: OS_ACTIVITY_MODE
 6. Value: disable
 7. Run your app again
+
+## WKWebView 相关
+
+如果服务端的Https证书是不合法的证书（比如自建的证书），那https请求在TLS握手过程的身份认证（证书校验）就会不通过导致请求失败。
+
+解决办法是：使用服务端传过来的证书进行身份验证，而不是去权威机构验证证书。
+
+```
+- (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable))completionHandler {
+    
+    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+        if (challenge.previousFailureCount == 0) {
+            NSURLCredential *credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
+            completionHandler(NSURLSessionAuthChallengeUseCredential, credential);
+        } else {
+            completionHandler(NSURLSessionAuthChallengeUseCredential, nil);
+        }
+    } else {
+        completionHandler(NSURLSessionAuthChallengeUseCredential, nil);
+    }
+}
+```
+
+## TableView 相关
+
+### iOS 11 中 UITableView Header Height
+
+[iOS 11 Floating TableView Header](https://stackoverflow.com/questions/46246924/ios-11-floating-tableview-header)
+
+在 iOS 11 中，如果同时设置了 `tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section` 和 `tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section`，需要如下设置：
+
+	self.tableView.estimatedRowHeight = 0;
+	self.tableView.estimatedSectionHeaderHeight = 0;
+	self.tableView.estimatedSectionFooterHeight = 0;
+	
+### UITableView 的分割线没有显示
+
+原因：自定义 UITableViewCell 重写了 layoutSubviews，但是没有调用 super 方法。
+
+### reloadData 不会立即刷新
+
+调用 `reloadData` 后，发现 `tableView:numberOfRowsInSection:`, `tableView:cellForRowAtIndexPath:` 等几个代理方法不会立即调用，而是在 `reloadData` 后面的代码会先执行。
+
+比如：
+
+```
+- (void)reloadLikeMeData
+{
+    if (self.likeViewModel.needReloadData) {
+        [self.tableView reloadData];
+        self.likeViewModel.needReloadData = NO;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *likeStateID = @"likeState_cell";
+    FYLikeStateCell *likeStateCell = [tableView dequeueReusableCellWithIdentifier:likeStateID];
+    if (likeStateCell == nil) {
+        likeStateCell = [[FYLikeStateCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:likeStateID];
+        likeStateCell.unreadCount = self.likeViewModel.unreadCount;
+        likeStateCell.likeMeUsers = self.likeViewModel.likeMeUsers;
+    } else {
+        // 这里不会执行
+        if (self.likeViewModel.needReloadData) { // 为了不频繁刷新界面
+            likeStateCell.unreadCount = self.likeViewModel.unreadCount;
+            likeStateCell.likeMeUsers = self.likeViewModel.likeMeUsers;
+        }
+    }
+    return likeStateCell;
+}
+```
+
+上面的代码 `self.likeViewModel.needReloadData = NO;` 会比 `tableView:cellForRowAtIndexPath:` 先执行，导致 `else` 的代码不会执行。
+
+原因是：`reloadData` 是在下一个 runloop 才执行刷新界面的，所以，而当前方法中的函数是在runloop中串行排队执行的。只有当前方法不再占用runloop，[tableview reloaddata]才可以在下一个runloop中执行。
+
+有2中方法可以解决。
+
+方法1: `layoutIfNeeded` 会强制重绘并等待完成
+
+```
+[self.tableView reloadData];  
+[self.tableView layoutIfNeeded];
+//刷新完成  
+
+self.likeViewModel.needReloadData = NO;
+```
+
+方法2: `reloadData` 会在主队列执行，而 `dispatch_get_main_queue` 会等待机会，直到主队列空闲才执行。
+
+```
+[self.collectionView reloadData];
+dispatch_async(dispatch_get_main_queue(), ^{
+    // 刷新完成
+    self.likeViewModel.needReloadData = NO;
+});
+```
