@@ -158,7 +158,7 @@
 * `Cmd + Option + J` : 导航栏文件过滤
 * `Cmd + \` : 在光标所在行打断点
 * `Cmd + Ctrl + ←/→` : back/forward
-
+* `Ctrl + |` : 跳到文件有更改的位置
 
 ## 钉钉
 
