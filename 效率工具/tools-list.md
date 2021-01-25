@@ -75,6 +75,10 @@
 
 [Finder go](https://github.com/onmyway133/FinderGo) -- 🐢 Open terminal quickly from Finde
 
+[maccy](https://maccy.app) - 剪切板工具
+
+[Karabiner](https://karabiner-elements.pqrs.org/) - 键盘改键工具
+
 ## Chrome extensions
 
 [Postman](http://www.getpostman.com/) - Mock http requests. [An extension of Chrome](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=zh-CN)

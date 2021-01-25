@@ -504,6 +504,18 @@ options.predicate = [NSPredicate predicateWithFormat:@"mediaType = %d",PHAssetMe
 	self.tableView.estimatedRowHeight = 0;
 	self.tableView.estimatedSectionHeaderHeight = 0;
 	self.tableView.estimatedSectionFooterHeight = 0;
+
+### section header height must not be negative 闪退
+
+```
+if (IOS_Device > 11.0) {
+    self.tableView.estimatedRowHeight = 1.1f;
+    self.tableView.estimatedSectionHeaderHeight = 1.1f;
+    self.tableView.estimatedSectionFooterHeight = 1.1f;
+}
+```
+
+在iOS11以下上面调用 estimatedSectionHeaderHeight 的时候高度会返回负数，所以在iOS11的时候再调用
 	
 ### UITableView 的分割线没有显示
 
