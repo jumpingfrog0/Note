@@ -170,6 +170,7 @@ Shift + V
 * `:w` : 保存
 * `:q` : 退出
 * `:noh` : 取消 highlighted search
+* `:edit` `:e` : 刷新当前文件
 
 ### 函数跳转
 

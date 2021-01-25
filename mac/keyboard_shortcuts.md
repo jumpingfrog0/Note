@@ -137,6 +137,7 @@
 * `Cmd + Shift + V` : Markdown预览
 * `Ctrl + G` : 移动光标到某行
 * `Shift + Tab` : 更改文件缩进
+* `Alt + D` : plantuml 预览
 
 * `gd` : 进入函数
 * `Ctrl + T` : 返回跳转之前的位置
@@ -158,6 +159,7 @@
 * `Cmd + Option + J` : 导航栏文件过滤
 * `Cmd + \` : 在光标所在行打断点
 * `Cmd + Ctrl + ←/→` : back/forward
+* `Ctrl + |` : 跳转到上次改动的地方
 
 
 ## 钉钉
