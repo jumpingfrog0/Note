@@ -508,11 +508,15 @@ options.predicate = [NSPredicate predicateWithFormat:@"mediaType = %d",PHAssetMe
 ### section header height must not be negative 闪退
 
 ```
-if (IOS_Device > 11.0) {
-    self.tableView.estimatedRowHeight = 1.1f;
-    self.tableView.estimatedSectionHeaderHeight = 1.1f;
-    self.tableView.estimatedSectionFooterHeight = 1.1f;
-}
+    if (@available(iOS 11.0, *)) {
+        // fix iOS 11以下会返回负数导致闪退
+        self.tableView.estimatedRowHeight = 0.01;
+        self.tableView.estimatedSectionHeaderHeight = 0.01;
+        self.tableView.estimatedSectionFooterHeight = 0.01;
+    }
+    if (@available(iOS 11.0, *)) {
+        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
 ```
 
 在iOS11以下上面调用 estimatedSectionHeaderHeight 的时候高度会返回负数，所以在iOS11的时候再调用

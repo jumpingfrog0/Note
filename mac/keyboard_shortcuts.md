@@ -80,6 +80,8 @@
 * `Cmd + 2` : 切换Version Control 选项
 * `Cmd + 3` : 切换左边导航栏为Structure选项
 
+* `Cmd + Ctrl + left/right` : 跳转到上次的位置
+
 * `Cmd + Option + ←` : 代码块折叠
 * `Cmd + Option + →` : 代码块展开
 * `Cmd + Option + L` : 格式化代码
@@ -132,8 +134,9 @@
 * `Cmd + ,` : 打开 settings.json
 * `Cmd + K`, `Z` : 全屏
 * `Cmd + \` : 分屏
-* `Cmd + p` : 搜索文件
-* `Cmd + b` : 打开侧边栏
+* `Cmd + P` : 搜索文件
+* `Cmd + Shift + P` : 搜索文件
+* `Cmd + B` : 打开侧边栏
 * `Cmd + Shift + V` : Markdown预览
 * `Ctrl + G` : 移动光标到某行
 * `Shift + Tab` : 更改文件缩进

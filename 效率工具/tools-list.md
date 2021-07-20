@@ -34,8 +34,11 @@
 * shiftit
 * wunderlist
 * marboo
+* OmniDiskSweeper
 
 ## Application
+
+[OmniDiskSweeper]() - 磁盘扫描工具
 
 [Alfred](https://www.alfredapp.com/) - 快捷搜索
 

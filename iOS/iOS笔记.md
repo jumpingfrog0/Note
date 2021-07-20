@@ -23,3 +23,8 @@ iOS 音频播放 - AVAudioSession
 ```
 itms-services://?action=download-manifest&url=https://staticsci.xiaoenai.com/beta/ios/wake_beta2.plist
 ```
+
+iOS 自动适配(Auto Layout)的原理是什么？
+我想了半天：y = ax + b. 
+
+￼![](./images/auto-layout.jpg)
